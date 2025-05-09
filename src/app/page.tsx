@@ -1,7 +1,26 @@
-"use client"
-import { Button } from "@/components/ui/button";
+import {
+    Card,
+    CardAction,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle
+} from "@/components/ui/card";
 
-export default function Page(){
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 
-    return <Button variant="outline" onClick={() => console.log("Hello")} >Hello</Button>
+export default function Home() {
+
+    return (
+        <Card className="w-full h-full p-4">
+            <CardHeader className="flex p-4 justify-between w-full">
+                <CardTitle className="text-3xl">Notes App</CardTitle>
+                <Avatar>
+                    <AvatarImage className="rounded-full size-10" src="https://github.com/shadcn.png"/>
+                    <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
+            </CardHeader>
+        </Card>
+    )
 }

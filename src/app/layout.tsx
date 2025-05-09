@@ -12,7 +12,7 @@ export default function RootLayout({ children }: {
 }) {
   return (
     <html suppressHydrationWarning>
-      <body className="bg-background dark:bg-background h-screen w-screen py-4 px-3">
+      <body className="bg-background dark:bg-background h-screen w-screen md:p-4">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
