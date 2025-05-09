@@ -7,8 +7,8 @@
     "config": "",
     "css": "src/app/globals.css",
     "baseColor": "zinc",
-    "cssVariables": false,
-    "prefix": ""
+    "cssVariables": true,
+    "prefix": "tw"
   },
   "aliases": {
     "components": "@/components",
