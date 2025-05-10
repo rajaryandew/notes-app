@@ -14,24 +14,30 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 
-import { useState } from "react";
-import { notes } from "@/utils/notes";
+import { type Dispatch, type SetStateAction, useState } from "react";
+import type { Note } from "@/utils/notes";
 
-export default function AddNote() {
+export default function AddNote({
+    setNotes,
+}: {
+    setNotes: Dispatch<SetStateAction<Note[]>>;
+}) {
     const [title, setTitle] = useState("Title");
     const [description, setDescription] = useState("Description");
 
     async function addNote() {
-        await notes.push({ title: title, description: description });
+        await setNotes((n) => [
+            { title: title, description: description },
+            ...n,
+        ]);
         setTitle((t) => "Title");
         setDescription((d) => "Description");
-        console.log(notes)
     }
 
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className=" font-semibold flex-1/8 grow-0" >
+                <Button className=" font-semibold flex-1/8 grow-0">
                     New Note
                 </Button>
             </DialogTrigger>
@@ -50,7 +56,7 @@ export default function AddNote() {
                         <Input
                             type="text"
                             id="title"
-                            onChange={(e) => setTitle(e.target.value.trim())}
+                            onChange={(e) => setTitle(e.target.value)}
                             value={title}
                             className="col-span-3"
                         />
@@ -62,7 +68,7 @@ export default function AddNote() {
                         <Textarea
                             id="description"
                             onChange={(e) =>
-                                setDescription(e.target.value.trim())
+                                setDescription(e.target.value)
                             }
                             value={description}
                             className="col-span-3"

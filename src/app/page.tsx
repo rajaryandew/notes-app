@@ -11,8 +11,8 @@ import {
     CardTitle
 } from "@/components/ui/card";
 
-import ProfilePicture from "@/components/Home/ProfilePicture";
-import Content from "@/components/Home/Content";
+import ProfilePicture from "@/components/Home/profile-picture";
+import Content from "@/components/Home/content";
 import { notes } from "@/utils/notes";
 
 

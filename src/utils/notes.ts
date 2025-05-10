@@ -4,5 +4,8 @@ export type Note = {
 };
 
 export const notes: Note[] = [
- 
+    {
+        title:"First note",
+        description: "first note"
+    }
 ];
