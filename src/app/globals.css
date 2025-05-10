@@ -3,6 +3,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+::-webkit-scrollbar{
+  display: none;
+}
+
+::-webkit-scrollbar-button{
+  display: none;
+}
+
 :root {
   --radius: 0.625rem;
   --card: oklch(1 0 0);
