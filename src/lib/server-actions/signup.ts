@@ -4,7 +4,6 @@ import { addUser } from "../db/user"
 import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { cookies } from "next/headers"
-import { Prisma } from "@/generated/prisma"
 
 export async function signup(formData:FormData) {
     const cookieStore = await cookies()

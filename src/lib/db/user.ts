@@ -20,3 +20,24 @@ export async function addUser(username:string,email:string,password:string){
         }
     }
 }
+
+export async function getUser(username:string,password:string){
+    try{
+        const user = await prisma.profile.findFirst({
+            where:{username}
+        })
+        if(!user){
+            throw new Error("User not found")
+        }
+
+        const isPasswordMatching = await bcrypt.compare(password,user.password);
+
+        if(!isPasswordMatching){
+            throw new Error("Password incorrect")
+        }
+
+        return user
+    } catch(error){
+        throw error        
+    }
+}
