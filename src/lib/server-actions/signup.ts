@@ -11,7 +11,7 @@ export async function signup(formData:FormData) {
     try{
         await addUser(user.username,user.email,user.password)
         
-    } catch(err:any){
+    } catch(err){
         redirect("/already-exists")     
     }
     await cookieStore.set("username", user.username,{
