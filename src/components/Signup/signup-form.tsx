@@ -10,6 +10,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
+import { signup } from "@/lib/server-actions/signup"
+import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
+import { error } from "console"
+
 export function SignupForm({
   className,
   ...props
@@ -24,14 +29,15 @@ export function SignupForm({
                   </CardDescription>
               </CardHeader>
               <CardContent>
-                  <form>
+                  <form action={signup}>
                       <div className="flex flex-col gap-6">
                           <div className="grid gap-3">
-                              <Label htmlFor="username">Username</Label>
+                              <Label id="username-label" htmlFor="username">Username</Label>
                               <Input
                                   id="username"
                                   type="text"
                                   placeholder="username"
+                                  name="username"
                                   required
                               />
                           </div>
@@ -40,13 +46,14 @@ export function SignupForm({
                               <Input
                                   id="email"
                                   type="email"
+                                  name="email"
                                   placeholder="m@example.com"
                                   required
                               />
                           </div>
                           <div className="grid gap-3">
                               <Label htmlFor="password">Password</Label>
-                              <Input id="password" type="password" required />
+                              <Input id="password" type="password" name="password" required />
                           </div>
                           <div className="flex flex-col gap-3">
                               <Button type="submit" className="w-full">
