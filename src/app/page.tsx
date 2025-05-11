@@ -27,7 +27,7 @@ export default function Home() {
                 </CardTitle>
                 <ProfilePicture src="https://i.pinimg.com/736x/29/18/1e/29181e64d66002fba0566b6f2f48d28d.jpg" />
             </CardHeader>
-            <Content notes={notes} />
+            <Content />
         </Card>
     );
 }
