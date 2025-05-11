@@ -13,8 +13,6 @@ import {
 
 import ProfilePicture from "@/components/Home/profile-picture";
 import Content from "@/components/Home/content";
-import { notes } from "@/utils/notes";
-
 
 export default function Home() {
 
