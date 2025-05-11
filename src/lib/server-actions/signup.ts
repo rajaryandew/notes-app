@@ -14,7 +14,11 @@ export async function signup(formData:FormData) {
     } catch(err:any){
         redirect("/already-exists")     
     }
-    await cookieStore.set("username", user.username);
+    await cookieStore.set("username", user.username,{
+        httpOnly:true,
+        path:"/",
+        maxAge: 60 * 60 * 24 * 7
+    });
     revalidatePath("/");
     redirect("/");
 }

@@ -28,12 +28,12 @@ export function LoginForm({
           <form action={login}>
             <div className="flex flex-col gap-6">
               <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
+                <Label htmlFor="username">Username</Label>
                 <Input
                   id="username"
                   type="text"
                   name="username"
-                  placeholder="username"
+                  placeholder="example123"
                   required
                 />
               </div>

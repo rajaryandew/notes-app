@@ -6,7 +6,7 @@ export function middleware(request:NextRequest) {
     const authenticated = request.cookies.get("username")
     console.log(authenticated)
     if(!authenticated){
-        return NextResponse.redirect(new URL('/signup',request.url))
+        return NextResponse.redirect(new URL('/login',request.url))
     }
 }
 
