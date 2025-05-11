@@ -17,7 +17,10 @@ export async function login(formData:FormData){
         redirect("/not-found")
     }
     if(user){
-        await cookieStore.set("username",user.username)
+        await cookieStore.set("username",user.username,{
+            path:"/",
+            maxAge: 60 * 60 * 24 * 30
+        })
         revalidatePath("/")
         redirect("/")
     }

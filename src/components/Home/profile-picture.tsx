@@ -1,6 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Button } from "../ui/button";
 import { LogoutButton } from "./logout-button";
 
 export default function ProfilePicture({ src }: { src: string }) {

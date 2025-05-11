@@ -11,13 +11,12 @@ export async function signup(formData:FormData) {
     try{
         await addUser(user.username,user.email,user.password)
         
-    } catch(err:any){
+    } catch{
         redirect("/already-exists")     
     }
     await cookieStore.set("username", user.username,{
-        httpOnly:true,
         path:"/",
-        maxAge: 60 * 60 * 24 * 7
+        maxAge: 60 * 60 * 24 * 30
     });
     revalidatePath("/");
     redirect("/");

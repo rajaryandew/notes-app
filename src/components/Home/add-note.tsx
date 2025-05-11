@@ -30,8 +30,8 @@ export default function AddNote({
             { title: title, description: description },
             ...n,
         ]);
-        setTitle((t) => "Title");
-        setDescription((d) => "Description");
+        setTitle("Title");
+        setDescription("Description");
     }
 
     return (

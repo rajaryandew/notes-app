@@ -6,7 +6,7 @@ import Notes from "./notes";
 import { useState } from "react";
 import AddNote from "./add-note";
 
-export default function Content({ notes }: { notes: Note[] }) {
+export default function Content() {
 
     const [searchValue, setSearchValue] = useState("")
     const [notesList,setNotesList] = useState<Note[]>([

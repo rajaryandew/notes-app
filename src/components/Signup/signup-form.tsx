@@ -11,9 +11,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
 import { signup } from "@/lib/server-actions/signup"
-import { redirect } from "next/navigation"
-import { revalidatePath } from "next/cache"
-import { error } from "console"
 
 export function SignupForm({
   className,
