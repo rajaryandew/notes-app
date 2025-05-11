@@ -2,13 +2,11 @@
 import { redirect } from "next/navigation";
 import { getUser } from "../db/user";
 import { revalidatePath } from "next/cache";
-import { cookies } from "next/headers";
+import { setUsernameCookie } from "../set-cookie";
 
 export async function login(formData:FormData){
     const username = formData.get("username") as string
     const password = formData.get("password") as string
-    console.log(username,password)
-    const cookieStore = await cookies()
     let user;
     try{
         user = await getUser(username,password)
@@ -17,7 +15,7 @@ export async function login(formData:FormData){
         redirect("/not-found")
     }
     if(user){
-        await cookieStore.set("username",user.username)
+        setUsernameCookie(user)
         revalidatePath("/")
         redirect("/")
     }

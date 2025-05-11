@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 export function LogoutButton(){
 
     async function onLogout(){
-        await Cookies.remove("username")
+        await Cookies.remove("username",{path:"/"})
         window.location.reload()
     }
 
