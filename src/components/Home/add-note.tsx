@@ -1,6 +1,5 @@
 "use client";
 
-import { DialogClose } from "@radix-ui/react-dialog";
 import { Button } from "../ui/button";
 import {
     DialogHeader,
@@ -9,6 +8,7 @@ import {
     DialogTitle,
     DialogTrigger,
     DialogDescription,
+    DialogClose
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
