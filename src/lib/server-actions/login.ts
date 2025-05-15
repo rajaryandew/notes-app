@@ -12,9 +12,11 @@ export async function login(formData:FormData){
         user = await getUser(username,password)
     } catch (err){
         console.log(err)
+    }
+    if(!user){
         redirect("/not-found")
     }
-    if(user){
+    else{
         setUsernameCookie(user)
         revalidatePath("/")
         redirect("/")
