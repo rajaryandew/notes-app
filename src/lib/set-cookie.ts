@@ -1,9 +1,10 @@
-import Cookies from "js-cookie";
+import { cookies } from "next/headers";
 import { type User } from "./types";
 
-export async function setUsernameCookie(user:User) {
-    await Cookies.set("username", user.username, {
-        path: "/",
-        maxAge: 60 * 60 * 24 * 7,
-    });
+export async function setUsernameCookie(user: User) {
+  const cookieStore = cookies();
+  cookieStore.set("username", user.username, {
+    path: "/",
+    maxAge: 60 * 60 * 24 * 7,
+  });
 }
