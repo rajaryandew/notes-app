@@ -1,53 +1,38 @@
-Notes App
+# Notes App
 
-A clean and minimal full-stack notes app built with Next.js (App Router) and TypeScript, styled using Tailwind CSS + ShadCN, and backed by PostgreSQL using Prisma.
+A clean and minimal full-stack notes app built with **Next.js (App Router)** and **TypeScript**, styled using **Tailwind CSS** + **ShadCN**, and backed by **PostgreSQL** using **Prisma**.
 
 This app is built to showcase full-stack skills with smooth UI, solid structure, and modern tooling.
 
+---
+
+## 🚀 Tech Stack
+
+**Frontend**  
+- [Next.js](https://nextjs.org/) (App Router)  
+- [TypeScript](https://www.typescriptlang.org/)  
+- [Tailwind CSS](https://tailwindcss.com/)  
+- [ShadCN UI](https://ui.shadcn.com/)  
+
+**Backend**  
+- [Prisma](https://www.prisma.io/) – ORM  
+- [PostgreSQL](https://www.postgresql.org/)  
 
 ---
 
-🚀 Tech Stack
+## ✨ Features
 
-Frontend
-
-Next.js (App Router)
-
-TypeScript
-
-Tailwind CSS
-
-ShadCN UI
-
-
-Backend
-
-Prisma – ORM
-
-PostgreSQL
-
-
+- Create, read, and delete notes  
+- Fully responsive and accessible UI  
+- Minimal and clean UX with ShadCN  
+- Postgres-backed data with Prisma  
+- Ready for auth integration (WIP)  
 
 ---
 
-✨ Features
+## 📁 Project Structure
 
-Create, read, and delete notes
-
-Fully responsive and accessible UI
-
-Minimal and clean UX with ShadCN
-
-Postgres-backed data with Prisma
-
-Ready for auth integration (WIP)
-
-
-
----
-
-📁 Project Structure
-
+```
 src/
 ├── app          # Pages, layouts, routing (App Router)
 ├── components   # Reusable UI components
@@ -58,46 +43,46 @@ prisma/
 └── schema.prisma # PostgreSQL schema
 
 public/           # Static assets
-
+```
 
 ---
 
-⚙️ Getting Started
+## ⚙️ Getting Started
 
-1. Clone & Install
-
+**1. Clone & Install**
+```
 git clone https://github.com/rajaryandew/notes-app.git
 cd notes-app
 npm install
+```
 
-2. Setup Environment
-
-Create a .env file:
-
+**2. Setup Environment**  
+Create a `.env` file:
+```
 DATABASE_URL=postgresql://user:password@localhost:5432/notesapp
+```
 
-3. Prisma Setup
-
+**3. Prisma Setup**
+```
 npx prisma generate
 npx prisma migrate dev --name init
+```
 
-4. Run App
-
+**4. Run App**
+```
 npm run dev
+```
 
-Visit: http://localhost:3000
-
-
----
-
-🔗 Live Demo
-
-Check it out here
-
+Visit: `http://localhost:3000`
 
 ---
 
-📄 License
+## 🔗 Live Demo
+
+**[Check it out here](https://notes-app-gold-zeta.vercel.app/)**
+
+---
+
+## 📄 License
 
 MIT
-
