@@ -1,10 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📝 Notes App
 
-## Getting Started
+A sleek and modern note-taking app built with **Next.js 14**, **Tailwind CSS**, **Prisma**, and **TypeScript**. Designed for simplicity and efficiency, this app lets you jot down your thoughts and keep them organized effortlessly.
 
-First, run the development server:
+🔗 **Live Demo**: [https://notes-app-gold-zeta.vercel.app](https://notes-app-gold-zeta.vercel.app)
+
+---
+
+## 🚀 Features
+
+- ⚡ **Next.js 14** – App Router, server components, latest features
+- 🎨 **Tailwind CSS** – Fast and responsive UI styling
+- 🛡️ **TypeScript** – Type-safe and scalable
+- 🧠 **Prisma** – Powerful and intuitive ORM
+- 🧹 **ESLint + Prettier** – Clean code, always
+- 📱 **Responsive UI** – Works well across all screen sizes
+
+---
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js `v18` or higher
+- Any package manager (`npm`, `yarn`, `pnpm`, or `bun`)
+
+### Installation
 
 ```bash
+git clone https://github.com/rajaryandew/notes-app.git
+cd notes-app
+```
+
+Install dependencies:
+
+```bash
+# Choose one
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+---
+
+### 🔐 Environment Variables
+
+Create a `.env` file in the root of your project with the following content:
+
+```env
+DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<database>?schema=public"
+SALT_ROUNDS=<no. of salt rounds eg.(10)>
+```
+
+> 🧠 Replace the placeholder values with your actual PostgreSQL credentials.  
+> For hosted DBs like **Supabase**, **Railway**, or **Neon**, just paste their connection string into `DATABASE_URL`.
+
+---
+
+### 🧬 Database Setup
+
+Run the following Prisma commands:
+
+```bash
+npx prisma generate
+npx prisma migrate dev
+```
+
+---
+
+### 🧪 Start Dev Server
+
+```bash
+# Again, choose one
 npm run dev
 # or
 yarn dev
@@ -14,23 +84,30 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📁 Project Structure
 
-## Learn More
+```txt
+notes-app/
+├── prisma/             # Prisma schema and migrations
+├── public/             # Static assets
+├── src/
+│   ├── app/            # Next.js App Router structure
+│   ├── components/     # UI components
+│   ├── lib/            # Helpers and utilities
+│   └── styles/         # Global styling
+├── .eslintrc.js        # ESLint config
+├── next.config.js      # Next.js config
+├── tailwind.config.ts  # Tailwind config
+└── tsconfig.json       # TypeScript config
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the **MIT License**.  
+See the [`LICENSE`](./LICENSE) file for details.
