@@ -11,7 +11,6 @@ datasource db {
 model profile {
   id       Int    @id @default(autoincrement())
   username String @unique(map: "unique_username") @db.VarChar(255)
-  email    String @db.VarChar(255)
   password String
   note     note[]
 }
