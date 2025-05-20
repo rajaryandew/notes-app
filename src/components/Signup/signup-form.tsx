@@ -38,16 +38,6 @@ export function SignupForm({
                               />
                           </div>
                           <div className="grid gap-3">
-                              <Label htmlFor="email">Email</Label>
-                              <Input
-                                  id="email"
-                                  type="email"
-                                  name="email"
-                                  placeholder="m@example.com"
-                                  required
-                              />
-                          </div>
-                          <div className="grid gap-3">
                               <Label htmlFor="password">Password</Label>
                               <Input id="password" type="password" name="password" required />
                           </div>
