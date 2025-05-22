@@ -3,14 +3,13 @@ import prisma from "./prisma";
 import { SALT_ROUNDS } from "../config";
 import { Prisma } from "@/generated/prisma";
 
-export async function addUser(username:string,email:string,password:string){
+export async function addUser(username:string,password:string){
     try{
         const hashedPassword = await bcrypt.hash(password,parseInt(SALT_ROUNDS))
         
         await prisma.profile.create({
             data:{
                 username,
-                email,
                 password:hashedPassword
             }
         })

@@ -10,7 +10,7 @@ export async function signup(formData:FormData) {
     const cookieStore = await cookies()
     const user:User = Object.fromEntries(formData) as User
     try{
-        await addUser(user.username,user.email,user.password)
+        await addUser(user.username,user.password)
         
     } catch{
         redirect("/already-exists")     
