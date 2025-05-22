@@ -15,7 +15,8 @@ import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 
 import { type Dispatch, type SetStateAction, useState } from "react";
-import type { Note } from "@/utils/notes";
+import type { NewNote, Note } from "@/lib/types";
+import { createNote, getNotes } from "@/lib/server-actions/note";
 
 export default function AddNote({
     setNotes,
@@ -23,15 +24,13 @@ export default function AddNote({
     setNotes: Dispatch<SetStateAction<Note[]>>;
 }) {
     const [title, setTitle] = useState("Title");
-    const [description, setDescription] = useState("Description");
+    const [description, setDescription] = useState("");
 
     async function addNote() {
-        await setNotes((n) => [
-            { title: title, description: description },
-            ...n,
-        ]);
+        const note:NewNote = {title,description}
+        setNotes(await createNote(note))
         setTitle("Title");
-        setDescription("Description");
+        setDescription("");
     }
 
     return (
@@ -72,6 +71,7 @@ export default function AddNote({
                             }
                             value={description}
                             className="col-span-3"
+                            placeholder="Write more about it (optional)"
                         />
                     </div>
                     <div className="flex justify-end gap-4">

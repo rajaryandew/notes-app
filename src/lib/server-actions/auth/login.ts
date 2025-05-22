@@ -1,8 +1,8 @@
 'use server'
 import { redirect } from "next/navigation";
-import { getUser } from "../db/user";
+import { getUser } from "../../db/user";
 import { revalidatePath } from "next/cache";
-import { setUsernameCookie } from "../set-cookie";
+import { setUsernameCookie } from "../../set-cookie";
 import { cookies } from "next/headers";
 
 export async function login(formData:FormData){

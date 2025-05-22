@@ -1,4 +1,4 @@
-import type { Note } from "@/utils/notes";
+import type { Note } from "@/lib/types";
 import { Button } from "../ui/button";
 import {
     Card,
@@ -9,6 +9,7 @@ import {
     CardTitle,
 } from "../ui/card";
 import type { Dispatch, SetStateAction } from "react";
+import { removeNote } from "@/lib/server-actions/note";
 
 export default function Note({
     note,
@@ -20,8 +21,8 @@ export default function Note({
     setNotes: Dispatch<SetStateAction<Note[]>>;
 }) {
 
-    function onDelete(){
-        setNotes((n) => n.filter((no) => no.title !== note.title)) 
+    async function onDelete(){
+      setNotes(await removeNote(note))  
     }
 
     return (
