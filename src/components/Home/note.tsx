@@ -10,6 +10,7 @@ import {
 } from "../ui/card";
 import type { Dispatch, SetStateAction } from "react";
 import { removeNote } from "@/lib/server-actions/note";
+import Delete from "./delete";
 
 export default function Note({
     note,
@@ -35,7 +36,7 @@ export default function Note({
             </CardContent>
             <CardFooter className="flex gap-4 justify-end items-center">
                 <Button>Edit</Button>
-                <Button onClick={onDelete}>Delete</Button>
+                <Delete onDelete={onDelete}/>
             </CardFooter>
         </Card>
     );
