@@ -23,7 +23,8 @@ export default function Note({
 }) {
 
     async function onDelete(){
-      setNotes(await removeNote(note))  
+      setNotes((n) => n.filter((no) => no.id !== note.id))
+      await removeNote(note);  
     }
 
     return (
