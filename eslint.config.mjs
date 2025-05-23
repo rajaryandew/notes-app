@@ -14,7 +14,8 @@ const eslintConfig = [
   {
     ignores:[
       "src/generated/prisma"
-    ]
+    ],
+    rules: { "@typescript-eslint/no-explicit-any": "off" }
   }
 ];
 

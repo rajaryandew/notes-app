@@ -16,7 +16,7 @@ import { Textarea } from "../ui/textarea";
 
 import { type Dispatch, type SetStateAction, useState } from "react";
 import type { NewNote, Note } from "@/lib/types";
-import { createNote, getNotes } from "@/lib/server-actions/note";
+import { createNote} from "@/lib/server-actions/note";
 
 export default function AddNote({
     setNotes,
