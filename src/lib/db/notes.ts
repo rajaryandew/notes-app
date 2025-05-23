@@ -11,17 +11,17 @@ export async function getNotesRecord(username: string) {
 }
 
 export async function createNoteRecord(username:string,note:NewNote){
-    prisma.note.create({
+    await prisma.note.create({
         data:{
             title:note.title,
-            description:note.title,
+            description:note.description,
             username
         }
     })
 }
 
 export async function removeNoteRecord(note:Note){
-    prisma.note.delete({
+    await prisma.note.delete({
         where: {
             id:note.id,
         }
