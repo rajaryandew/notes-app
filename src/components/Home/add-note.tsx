@@ -28,9 +28,11 @@ export default function AddNote({
 
     async function addNote() {
         const note:NewNote = {title,description}
-        setNotes(await createNote(note))
-        setTitle("Title");
-        setDescription("");
+        if(title){
+            setNotes(await createNote(note) ?? [])
+            setTitle("Title");
+            setDescription("");
+        }
     }
 
     return (
@@ -47,7 +49,7 @@ export default function AddNote({
                 <DialogDescription>
                     Add a new note with title and description.
                 </DialogDescription>
-                <div className="grid gap-4 py-4">
+                <form className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="title" className="text-right">
                             Title
@@ -82,7 +84,7 @@ export default function AddNote({
                             <Button onClick={addNote}>Add</Button>
                         </DialogClose>
                     </div>
-                </div>
+                </form>
             </DialogContent>
         </Dialog>
     );
