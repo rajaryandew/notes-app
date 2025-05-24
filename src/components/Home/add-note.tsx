@@ -29,7 +29,7 @@ export default function AddNote({
     async function addNote() {
         const note:NewNote = {title,description}
         if(title){
-            setNotes(await createNote(note) ?? [])
+            setNotes((await createNote(note))?.reverse() ?? [])
             setTitle("Title");
             setDescription("");
         }
