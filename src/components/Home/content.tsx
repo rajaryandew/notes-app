@@ -14,7 +14,7 @@ export default function Content() {
 
     useEffect(() => {
         getNotes().then((notes) => {
-            setNotesList(notes)
+            setNotesList(notes ?? [])
         })
     },[])
 
