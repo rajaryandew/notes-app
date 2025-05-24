@@ -16,6 +16,8 @@ export async function addUser(username:string,password:string){
     }catch(error){
         if(error instanceof Prisma.PrismaClientKnownRequestError && error.code === "P2002"){
             throw new Error("Username already exists")
+        } else{
+            throw new Error("Server error, try again")
         }
     }
 }
