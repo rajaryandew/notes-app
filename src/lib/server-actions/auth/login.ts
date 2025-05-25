@@ -19,7 +19,7 @@ export async function login(formData:FormData){
         redirect("/not-found")
     }
     else{
-        setUsernameCookie(cookieStore, user);
+        await setUsernameCookie(user);
         revalidatePath("/")
         redirect("/")
     }

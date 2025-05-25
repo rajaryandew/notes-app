@@ -1,13 +1,14 @@
 'use server'
 
 import { createNoteRecord, getNotesRecord, removeNoteRecord, updateNoteRecord } from "../db/notes"
+import { getCookie } from "../get-cookie"
 import { NewNote, Note } from "../types"
 import { cookies } from "next/headers"
 
 
 export async function getNotes(){
     try{
-        const username = (await cookies()).get("username")!.value
+        const username = await getCookie()
         const notes = await getNotesRecord(username)
         return notes
     } catch(err){
@@ -19,7 +20,7 @@ export async function getNotes(){
 
 export async function createNote(note:NewNote){
     try{
-        const username = (await cookies()).get("username")!.value;
+        const username = await getCookie();
         await createNoteRecord(username,note)
         return await getNotes()
     }catch(err){
