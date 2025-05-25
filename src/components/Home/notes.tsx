@@ -1,4 +1,4 @@
-import { type Note as NoteType } from "@/utils/notes";
+import { type Note as NoteType } from "@/lib/types";
 import Note from "./note";
 import type { Dispatch, SetStateAction } from "react";
 
@@ -18,7 +18,7 @@ export default function Notes({
                 note.title
                     .toLowerCase()
                     .startsWith(searchValue.toLowerCase()) ||
-                note.description
+                note.description!
                     .toLowerCase()
                     .startsWith(searchValue.toLowerCase()) ? (
                     <Note key={index} note={note} setNotes={setNotes} index={index}></Note>

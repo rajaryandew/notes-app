@@ -1,5 +1,4 @@
-import type { Note } from "@/utils/notes";
-import { Button } from "../ui/button";
+import type { Note } from "@/lib/types";
 import {
     Card,
     CardContent,
@@ -9,6 +8,9 @@ import {
     CardTitle,
 } from "../ui/card";
 import type { Dispatch, SetStateAction } from "react";
+import { removeNote } from "@/lib/server-actions/note";
+import Delete from "./delete";
+import EditNote from "./update-note";
 
 export default function Note({
     note,
@@ -20,8 +22,9 @@ export default function Note({
     setNotes: Dispatch<SetStateAction<Note[]>>;
 }) {
 
-    function onDelete(){
-        setNotes((n) => n.filter((no) => no.title !== note.title)) 
+    async function onDelete(){
+      setNotes((n) => n.filter((no) => no.id !== note.id))
+      await removeNote(note);  
     }
 
     return (
@@ -33,8 +36,8 @@ export default function Note({
                 <CardDescription>{note.description}</CardDescription>
             </CardContent>
             <CardFooter className="flex gap-4 justify-end items-center">
-                <Button>Edit</Button>
-                <Button onClick={onDelete}>Delete</Button>
+                <EditNote setNotes={setNotes} note={note}/>
+                <Delete onDelete={onDelete}/>
             </CardFooter>
         </Card>
     );

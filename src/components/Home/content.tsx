@@ -1,20 +1,22 @@
 "use client"
-import { Note } from "@/utils/notes";
+import { Note } from "@/lib/types";
 import { CardContent } from "../ui/card";
 import { Input } from "../ui/input";
 import Notes from "./notes";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AddNote from "./add-note";
+import { getNotes } from "@/lib/server-actions/note";
 
 export default function Content() {
 
     const [searchValue, setSearchValue] = useState("")
-    const [notesList,setNotesList] = useState<Note[]>([
-        {
-            title:"Hello",
-            description:"World"
-        }
-    ])
+    const [notesList,setNotesList] = useState<Note[]>([])
+
+    useEffect(() => {
+        getNotes().then((notes) => {
+            setNotesList(notes ?? [])
+        })
+    },[])
 
     return (
         <CardContent className="px-4 flex flex-col overflow-auto">
