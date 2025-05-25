@@ -1,4 +1,3 @@
-import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import { type User } from "./types";
 import jwt from 'jsonwebtoken'
 import { ENVIORMENT, JWT_SECRET } from "./config";

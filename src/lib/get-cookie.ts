@@ -1,4 +1,3 @@
-import { ReadonlyRequestCookies } from "next/dist/server/web/spec-extension/adapters/request-cookies";
 import jwt, { JwtPayload } from "jsonwebtoken"
 import { JWT_SECRET } from "./config";
 import { cookies } from "next/headers";
@@ -12,7 +11,7 @@ export async function getCookie(){
             const username = decoded.id
             return username
         }        
-    } catch (error) {
+    } catch{
         return
     }
 }

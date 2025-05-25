@@ -3,7 +3,6 @@
 import { createNoteRecord, getNotesRecord, removeNoteRecord, updateNoteRecord } from "../db/notes"
 import { getCookie } from "../get-cookie"
 import { NewNote, Note } from "../types"
-import { cookies } from "next/headers"
 
 
 export async function getNotes(){
