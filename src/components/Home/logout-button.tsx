@@ -1,11 +1,11 @@
 "use client"
-import Cookies from "js-cookie"
 import { Button } from "../ui/button";
+import { logout } from "@/lib/server-actions/auth/logout";
 
 export function LogoutButton(){
 
     async function onLogout(){
-        await Cookies.remove("username",{path:"/"})
+        await logout()
         window.location.reload()
     }
 
