@@ -2,18 +2,18 @@
 
 A sleek and modern note-taking app built with **Next.js 14**, **Tailwind CSS**, **Prisma**, and **TypeScript**. Designed for simplicity and efficiency, this app lets you jot down your thoughts and keep them organized effortlessly.
 
-🔗 **Live Demo**: [https://notes-app-gold-zeta.vercel.app](https://notes-app-gold-zeta.vercel.app)
+🔗 **Live Demo**: [`https://notes-app-gold-zeta.vercel.app`](https://notes-app-gold-zeta.vercel.app)
 
 ---
 
 ## 🚀 Features
 
-- ⚡ **Next.js 14** – App Router, server components, latest features
-- 🎨 **Tailwind CSS** – Fast and responsive UI styling
-- 🛡️ **TypeScript** – Type-safe and scalable
-- 🧠 **Prisma** – Powerful and intuitive ORM
-- 🧹 **ESLint + Prettier** – Clean code, always
-- 📱 **Responsive UI** – Works well across all screen sizes
+- ⚡ **Next.js 14** – App Router, server components, latest features  
+- 🎨 **Tailwind CSS** – Fast and responsive UI styling  
+- 🛡️ **TypeScript** – Type-safe and scalable  
+- 🧠 **Prisma** – Powerful and intuitive ORM  
+- 🧹 **ESLint + Prettier** – Clean code, always  
+- 📱 **Responsive UI** – Works well across all screen sizes  
 
 ---
 
@@ -21,7 +21,7 @@ A sleek and modern note-taking app built with **Next.js 14**, **Tailwind CSS**, 
 
 ### Prerequisites
 
-- Node.js `v18` or higher
+- Node.js `v18` or higher  
 - Any package manager (`npm`, `yarn`, `pnpm`, or `bun`)
 
 ### Installation
@@ -52,7 +52,9 @@ Create a `.env` file in the root of your project with the following content:
 
 ```env
 DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<database>?schema=public"
-SALT_ROUNDS=<no. of salt rounds eg.(10)>
+SALT_ROUNDS=10
+JWT_SECRET="your-secret-key"
+ENVOIRMENT="prod" || "local"
 ```
 
 > 🧠 Replace the placeholder values with your actual PostgreSQL credentials.  
@@ -84,7 +86,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [`http://localhost:3000`](http://localhost:3000) in your browser.
 
 ---
 
@@ -104,10 +106,3 @@ notes-app/
 ├── tailwind.config.ts  # Tailwind config
 └── tsconfig.json       # TypeScript config
 ```
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**.  
-See the [`LICENSE`](./LICENSE) file for details.
