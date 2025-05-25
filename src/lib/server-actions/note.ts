@@ -42,7 +42,7 @@ export async function removeNote(note:Note){
 
 export async function updateNote(note:Note,updatedNote:NewNote){
     try {
-        updateNoteRecord(note,updatedNote)
+        await updateNoteRecord(note,updatedNote)
         return await getNotes()
     } catch (error) {
         if(error instanceof Error){

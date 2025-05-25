@@ -12,12 +12,18 @@ import {
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
-import { Note } from "@/lib/types";
-import { useState } from "react";
+import { NewNote, Note } from "@/lib/types";
+import { Dispatch, SetStateAction, useState } from "react";
+import { updateNote } from "@/lib/server-actions/note";
 
-export default function EditNote({ note }: { note: Note }) {
+export default function EditNote({ note,setNotes }: { note: Note,setNotes:Dispatch<SetStateAction<Note[]>> }) {
     const [title, setTitle] = useState(note.title);
     const [description, setDescription] = useState(note.description ?? "");
+
+    async function edit(){
+        const updatedNote:NewNote = {title,description}
+        setNotes(await updateNote(note,updatedNote) ?? [])
+    }
 
     return (
         <Dialog>
@@ -61,7 +67,7 @@ export default function EditNote({ note }: { note: Note }) {
                             <Button variant="secondary">Cancel</Button>
                         </DialogClose>
                         <DialogClose asChild>
-                            <Button>Edit</Button>
+                            <Button onClick={edit}>Edit</Button>
                         </DialogClose>
                     </div>
                 </form>

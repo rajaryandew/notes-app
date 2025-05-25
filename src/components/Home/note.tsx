@@ -36,7 +36,7 @@ export default function Note({
                 <CardDescription>{note.description}</CardDescription>
             </CardContent>
             <CardFooter className="flex gap-4 justify-end items-center">
-                <EditNote note={note}/>
+                <EditNote setNotes={setNotes} note={note}/>
                 <Delete onDelete={onDelete}/>
             </CardFooter>
         </Card>
