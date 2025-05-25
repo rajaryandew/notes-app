@@ -34,7 +34,7 @@ export default function EditNote({ note,setNotes }: { note: Note,setNotes:Dispat
                 <DialogHeader>
                     <DialogTitle>Edit this note...</DialogTitle>
                     <DialogDescription>
-                        You're going to edit this note
+                        You&aposre going to edit this note
                     </DialogDescription>
                 </DialogHeader>
                 <form className="grid gap-4 py-4">
