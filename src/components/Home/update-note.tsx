@@ -1,65 +1,47 @@
 "use client";
-
 import { Button } from "../ui/button";
 import {
-    DialogHeader,
     Dialog,
-    DialogContent,
-    DialogTitle,
+    DialogClose,
+    DialogHeader,
     DialogTrigger,
+    DialogContent,
     DialogDescription,
-    DialogClose
+    DialogTitle,
 } from "../ui/dialog";
-import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
+import { Input } from "../ui/input";
+import { Note } from "@/lib/types";
+import { useState } from "react";
 
-import { type Dispatch, type SetStateAction, useState } from "react";
-import type { NewNote, Note } from "@/lib/types";
-import { createNote} from "@/lib/server-actions/note";
-
-export default function AddNote({
-    setNotes,
-}: {
-    setNotes: Dispatch<SetStateAction<Note[]>>;
-}) {
-    const [title, setTitle] = useState("Title");
-    const [description, setDescription] = useState("");
-
-    async function addNote() {
-        const note:NewNote = {title,description}
-        if(title){
-            setNotes((await createNote(note))?.reverse() ?? [])
-            setTitle("Title");
-            setDescription("");
-        }
-    }
+export default function EditNote({ note }: { note: Note }) {
+    const [title, setTitle] = useState(note.title);
+    const [description, setDescription] = useState(note.description ?? "");
 
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className=" font-semibold flex-1/8 grow-0">
-                    New Note
-                </Button>
+                <Button>Edit</Button>
             </DialogTrigger>
-            <DialogContent className="">
+            <DialogContent>
                 <DialogHeader>
-                    <DialogTitle>Add Note</DialogTitle>
+                    <DialogTitle>Edit this note...</DialogTitle>
+                    <DialogDescription>
+                        You're going to edit this note
+                    </DialogDescription>
                 </DialogHeader>
-                <DialogDescription>
-                    Add a new note with title and description.
-                </DialogDescription>
                 <form className="grid gap-4 py-4">
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="title" className="text-right">
                             Title
                         </Label>
                         <Input
+                            className="col-span-3"
                             type="text"
                             id="title"
-                            onChange={(e) => setTitle(e.target.value)}
                             value={title}
-                            className="col-span-3"
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -68,9 +50,7 @@ export default function AddNote({
                         </Label>
                         <Textarea
                             id="description"
-                            onChange={(e) =>
-                                setDescription(e.target.value)
-                            }
+                            onChange={(e) => setDescription(e.target.value)}
                             value={description}
                             className="col-span-3"
                             placeholder="Write more about it (optional)"
@@ -81,7 +61,7 @@ export default function AddNote({
                             <Button variant="secondary">Cancel</Button>
                         </DialogClose>
                         <DialogClose asChild>
-                            <Button onClick={addNote}>Add</Button>
+                            <Button>Edit</Button>
                         </DialogClose>
                     </div>
                 </form>

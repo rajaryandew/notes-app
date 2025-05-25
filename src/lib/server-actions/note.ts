@@ -1,6 +1,6 @@
 'use server'
 
-import { createNoteRecord, getNotesRecord, removeNoteRecord } from "../db/notes"
+import { createNoteRecord, getNotesRecord, removeNoteRecord, updateNoteRecord } from "../db/notes"
 import { NewNote, Note } from "../types"
 import { cookies } from "next/headers"
 
@@ -36,6 +36,17 @@ export async function removeNote(note:Note){
     } catch (err) {
         if (err instanceof Error) {
             throw new Error(err.message);
+        }
+    }
+}
+
+export async function updateNote(note:Note,updatedNote:NewNote){
+    try {
+        updateNoteRecord(note,updatedNote)
+        return await getNotes()
+    } catch (error) {
+        if(error instanceof Error){
+            throw error.message
         }
     }
 }

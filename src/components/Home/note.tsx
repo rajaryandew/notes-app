@@ -1,5 +1,4 @@
 import type { Note } from "@/lib/types";
-import { Button } from "../ui/button";
 import {
     Card,
     CardContent,
@@ -11,6 +10,7 @@ import {
 import type { Dispatch, SetStateAction } from "react";
 import { removeNote } from "@/lib/server-actions/note";
 import Delete from "./delete";
+import EditNote from "./update-note";
 
 export default function Note({
     note,
@@ -36,7 +36,7 @@ export default function Note({
                 <CardDescription>{note.description}</CardDescription>
             </CardContent>
             <CardFooter className="flex gap-4 justify-end items-center">
-                <Button>Edit</Button>
+                <EditNote note={note}/>
                 <Delete onDelete={onDelete}/>
             </CardFooter>
         </Card>
