@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "@/app/globals.css"
 import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Notes app",
@@ -20,6 +21,8 @@ export default function RootLayout({ children }: {
           disableTransitionOnChange
         >
           {children}
+          {/* For the toast to show if something goes wrong */}
+          <Toaster theme="system" closeButton/>
         </ThemeProvider>
       </body>
     </html>

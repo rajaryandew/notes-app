@@ -1,6 +1,7 @@
 import { type Note as NoteType } from "@/lib/types";
 import Note from "./note";
 import type { Dispatch, SetStateAction } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
 export default function Notes({
     searchValue,
@@ -14,16 +15,24 @@ export default function Notes({
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {notes.map((note, index) =>
-                note.title
-                    .toLowerCase()
-                    .startsWith(searchValue.toLowerCase()) ||
-                note.description!
-                    .toLowerCase()
-                    .startsWith(searchValue.toLowerCase()) ? (
-                    <Note key={index} note={note} setNotes={setNotes} index={index}></Note>
-                ) : null
-            )}
+            <AnimatePresence>
+                {notes.map((note) =>
+                    note.title
+                        .toLowerCase()
+                        .startsWith(searchValue.toLowerCase()) ||
+                    note
+                        .description!.toLowerCase()
+                        .startsWith(searchValue.toLowerCase()) ? (
+                        <motion.div key={note.id} layout>
+                            <Note
+                                note={note}
+                                setNotes={setNotes}
+                                index={note.id}
+                            ></Note>
+                        </motion.div>
+                    ) : null
+                )}
+            </AnimatePresence>
         </div>
     );
 }

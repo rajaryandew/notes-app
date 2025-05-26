@@ -8,7 +8,7 @@ import {
     DialogTitle,
     DialogTrigger,
     DialogDescription,
-    DialogClose
+    DialogClose,
 } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
@@ -16,7 +16,9 @@ import { Textarea } from "../ui/textarea";
 
 import { type Dispatch, type SetStateAction, useState } from "react";
 import type { NewNote, Note } from "@/lib/types";
-import { createNote} from "@/lib/server-actions/note";
+import { createNote } from "@/lib/server-actions/note";
+import { MotionButton } from "../ui/motion";
+import { toast } from "sonner";
 
 export default function AddNote({
     setNotes,
@@ -27,20 +29,35 @@ export default function AddNote({
     const [description, setDescription] = useState("");
 
     async function addNote() {
-        const note:NewNote = {title,description}
-        if(title){
-            setNotes((await createNote(note))?.reverse() ?? [])
-            setTitle("Title");
-            setDescription("");
+        const note: NewNote = { title, description };
+        if (title) {
+            try{
+                const notes:Note[] = await createNote(note) ?? []
+                setNotes(notes.reverse() ?? [])    
+                setTitle("Title");
+                setDescription("");
+            } catch(err){
+                const error = err as Error
+                toast.error('Something unexpected happened', {
+                    description:error.message
+                })
+            }
+        } else {
+            toast.error("Title not found!!", {
+                description: "Please enter a title to continue",
+            });
         }
     }
 
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button className=" font-semibold flex-1/8 grow-0">
+                <MotionButton
+                    whileTap={{ scale: 0.8 }}
+                    className=" font-semibold flex-1/8 grow-0"
+                >
                     New Note
-                </Button>
+                </MotionButton>
             </DialogTrigger>
             <DialogContent className="">
                 <DialogHeader>
@@ -68,9 +85,7 @@ export default function AddNote({
                         </Label>
                         <Textarea
                             id="description"
-                            onChange={(e) =>
-                                setDescription(e.target.value)
-                            }
+                            onChange={(e) => setDescription(e.target.value)}
                             value={description}
                             className="col-span-3"
                             placeholder="Write more about it (optional)"
@@ -78,10 +93,22 @@ export default function AddNote({
                     </div>
                     <div className="flex justify-end gap-4">
                         <DialogClose asChild>
-                            <Button variant="secondary">Cancel</Button>
+                            <MotionButton
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                variant="secondary"
+                            >
+                                Cancel
+                            </MotionButton>
                         </DialogClose>
                         <DialogClose asChild>
-                            <Button onClick={addNote}>Add</Button>
+                            <MotionButton
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                                onClick={addNote}
+                            >
+                                Add
+                            </MotionButton>
                         </DialogClose>
                     </div>
                 </form>

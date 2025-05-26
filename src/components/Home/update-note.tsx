@@ -15,6 +15,7 @@ import { Input } from "../ui/input";
 import { NewNote, Note } from "@/lib/types";
 import { Dispatch, SetStateAction, useState } from "react";
 import { updateNote } from "@/lib/server-actions/note";
+import { toast } from "sonner";
 
 export default function EditNote({ note,setNotes }: { note: Note,setNotes:Dispatch<SetStateAction<Note[]>> }) {
     const [title, setTitle] = useState(note.title);
@@ -22,7 +23,15 @@ export default function EditNote({ note,setNotes }: { note: Note,setNotes:Dispat
 
     async function edit(){
         const updatedNote:NewNote = {title,description}
-        setNotes(await updateNote(note,updatedNote) ?? [])
+        try{
+            const notes:Note[] = await updateNote(note,updatedNote) ?? []
+            setNotes(notes.reverse())
+        } catch(err){
+            const error = err as Error;
+            toast.error("Something unexpected happned",{
+                description:error.message
+            }) 
+        }
     }
 
     return (
@@ -34,7 +43,7 @@ export default function EditNote({ note,setNotes }: { note: Note,setNotes:Dispat
                 <DialogHeader>
                     <DialogTitle>Edit this note...</DialogTitle>
                     <DialogDescription>
-                        You&aposre going to edit this note
+                        You&apos;re going to edit this note
                     </DialogDescription>
                 </DialogHeader>
                 <form className="grid gap-4 py-4">
