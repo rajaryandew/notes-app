@@ -1,3 +1,4 @@
+"use client"
 import { Note } from "@/lib/types";
 import { useContext,createContext,useState } from "react";
 
