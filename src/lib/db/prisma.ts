@@ -12,6 +12,6 @@ const prisma = globalForPrisma.prisma || new PrismaClient({
     }
 })
 
-if(ENVIORMENT !== "prod" || "production") globalForPrisma.prisma = prisma
+if(ENVIORMENT !== "prod" && ENVIORMENT !== "production") globalForPrisma.prisma = prisma
 
 export default prisma
