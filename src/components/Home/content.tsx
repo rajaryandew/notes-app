@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import AddNote from "./add-note";
 import { getNotes } from "@/lib/server-actions/note";
 import { toast } from "sonner";
-import { NoteProvider, useNote } from "@/context/NoteContext";
+import { useNote } from "@/context/NoteContext";
 
 export default function Content() {
     const [searchValue, setSearchValue] = useState("");
@@ -22,6 +22,7 @@ export default function Content() {
                     description: res.message,
                 });
             });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (

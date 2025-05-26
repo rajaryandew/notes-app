@@ -6,12 +6,11 @@ import {
     CardHeader,
     CardTitle,
 } from "../ui/card";
-import { removeNote } from "@/lib/server-actions/note";
 import Delete from "./delete";
 import EditNote from "./update-note";
 import { MotionCard } from "../ui/motion";
-import { toast } from "sonner";
 import { useNote } from "@/context/NoteContext";
+import { onDelete } from "@/lib/note-client";
 
 export default function Note({
     note,
@@ -22,19 +21,6 @@ export default function Note({
 }) {
 
     const setNotes = useNote().setNotesList
-
-    async function onDelete() {
-        try{
-            await removeNote(note);
-            setNotes((n) => n.filter((no) => no.id !== note.id));
-        } catch(err){
-            const error = err as Error
-            toast.error("Something unexpected happned", {
-                description:error.message
-            })
-        }
-        
-    }
 
     return (
         <MotionCard
@@ -53,7 +39,7 @@ export default function Note({
             </CardContent>
             <CardFooter className="flex gap-4 justify-end items-center">
                 <EditNote setNotes={setNotes} note={note} />
-                <Delete onDelete={onDelete} />
+                <Delete onDelete={() => onDelete(note,setNotes)} />
             </CardFooter>
         </MotionCard>
     );

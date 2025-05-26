@@ -12,27 +12,19 @@ import {
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Input } from "../ui/input";
-import { NewNote, Note } from "@/lib/types";
+import { Note } from "@/lib/types";
 import { Dispatch, SetStateAction, useState } from "react";
-import { updateNote } from "@/lib/server-actions/note";
-import { toast } from "sonner";
+import { editNote } from "@/lib/note-client";
 
-export default function EditNote({ note,setNotes }: { note: Note,setNotes:Dispatch<SetStateAction<Note[]>> }) {
+export default function EditNote({
+    note,
+    setNotes,
+}: {
+    note: Note;
+    setNotes: Dispatch<SetStateAction<Note[]>>;
+}) {
     const [title, setTitle] = useState(note.title);
     const [description, setDescription] = useState(note.description ?? "");
-
-    async function edit(){
-        const updatedNote:NewNote = {title,description}
-        try{
-            const notes:Note[] = await updateNote(note,updatedNote) ?? []
-            setNotes(notes.reverse())
-        } catch(err){
-            const error = err as Error;
-            toast.error("Something unexpected happned",{
-                description:error.message
-            }) 
-        }
-    }
 
     return (
         <Dialog>
@@ -76,7 +68,13 @@ export default function EditNote({ note,setNotes }: { note: Note,setNotes:Dispat
                             <Button variant="secondary">Cancel</Button>
                         </DialogClose>
                         <DialogClose asChild>
-                            <Button onClick={edit}>Edit</Button>
+                            <Button
+                                onClick={() =>
+                                    editNote(note, { title, description },setNotes)
+                                }
+                            >
+                                Edit
+                            </Button>
                         </DialogClose>
                     </div>
                 </form>

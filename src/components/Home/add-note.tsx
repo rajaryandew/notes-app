@@ -14,37 +14,14 @@ import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 
 import {useState } from "react";
-import type { NewNote, Note } from "@/lib/types";
-import { createNote } from "@/lib/server-actions/note";
 import { MotionButton } from "../ui/motion";
-import { toast } from "sonner";
 import { useNote } from "@/context/NoteContext";
+import { addNote } from "@/lib/note-client";
 
 export default function AddNote() {
     const setNotes = useNote().setNotesList
     const [title, setTitle] = useState("Title");
     const [description, setDescription] = useState("");
-
-    async function addNote() {
-        const note: NewNote = { title, description };
-        if (title) {
-            try{
-                const notes:Note[] = await createNote(note) ?? []
-                setNotes(notes.reverse() ?? [])    
-                setTitle("Title");
-                setDescription("");
-            } catch(err){
-                const error = err as Error
-                toast.error('Something unexpected happened', {
-                    description:error.message
-                })
-            }
-        } else {
-            toast.error("Title not found!!", {
-                description: "Please enter a title to continue",
-            });
-        }
-    }
 
     return (
         <Dialog>
@@ -102,7 +79,7 @@ export default function AddNote() {
                             <MotionButton
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={addNote}
+                                onClick={ () => addNote(title,description,setTitle,setDescription,setNotes)}
                             >
                                 Add
                             </MotionButton>
