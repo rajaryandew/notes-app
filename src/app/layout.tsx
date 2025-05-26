@@ -22,7 +22,7 @@ export default function RootLayout({ children }: {
         >
           {children}
           {/* For the toast to show if something goes wrong */}
-          <Toaster theme="system" closeButton/>
+          <Toaster theme="system" closeButton duration={2000}/>
         </ThemeProvider>
       </body>
     </html>

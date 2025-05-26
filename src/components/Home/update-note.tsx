@@ -49,6 +49,7 @@ export default function EditNote({
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
+                            placeholder={note.title}
                         />
                     </div>
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -60,7 +61,7 @@ export default function EditNote({
                             onChange={(e) => setDescription(e.target.value)}
                             value={description}
                             className="col-span-3"
-                            placeholder="Write more about it (optional)"
+                            placeholder={note.description || ''}
                         />
                     </div>
                     <div className="flex justify-end gap-4">

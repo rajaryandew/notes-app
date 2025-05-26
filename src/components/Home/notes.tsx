@@ -16,10 +16,10 @@ export default function Notes({
                 {notes.map((note) =>
                     note.title
                         .toLowerCase()
-                        .startsWith(searchValue.toLowerCase()) ||
+                        .includes(searchValue.toLowerCase()) ||
                     note
                         .description!.toLowerCase()
-                        .startsWith(searchValue.toLowerCase()) ? (
+                        .includes(searchValue.toLowerCase()) ? (
                         <motion.div key={note.id} layout>
                             <Note
                                 note={note}

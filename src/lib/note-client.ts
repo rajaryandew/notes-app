@@ -14,10 +14,14 @@ export async function addNote(
     const note: NewNote = { title, description };
     if (title) {
         try {
-            const notes: Note[] = (await createNote(note)) ?? [];
-            setNotes(notes.reverse() ?? []);
-            setTitle("Title");
-            setDescription("");
+            await createNote(note).then((notes) => {
+                setNotes(notes?.reverse() ?? []);
+                setTitle("Title");
+                setDescription("");
+                toast("Note added successfully 📝", {
+                    description: "Keep those thoughts flowing!",
+                });
+            });
         } catch (err) {
             handlePrismaError(err);
         }
@@ -33,13 +37,16 @@ export async function onDelete(
     setNotes: Dispatch<SetStateAction<Note[]>>
 ) {
     try {
-        await removeNote(note);
-        setNotes((n) => n.filter((no) => no.id !== note.id));
+        removeNote(note).then(() => {
+            setNotes((n) => n.filter((no) => no.id !== note.id));
+            toast("Note removed ⚠️", {
+                description: "This action cannot be undone.",
+            });
+        });
     } catch (err) {
-        handlePrismaError(err)
+        handlePrismaError(err);
     }
 }
-
 
 export async function editNote(
     note: Note,
@@ -47,9 +54,14 @@ export async function editNote(
     setNotes: Dispatch<SetStateAction<Note[]>>
 ) {
     try {
-        const notes: Note[] = (await updateNote(note, updatedNote)) ?? [];
-        setNotes(notes.reverse());
+        updateNote(note, updatedNote).then((notes) => {
+            setNotes(notes?.reverse() ?? []);
+            toast("Note updated ✅", {
+                description: "Changes saved like a boss 💾",
+            });
+        }
+        )
     } catch (err) {
-        handlePrismaError(err)
+        handlePrismaError(err);
     }
 }
