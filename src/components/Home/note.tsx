@@ -1,6 +1,5 @@
 import type { Note } from "@/lib/types";
 import {
-    Card,
     CardContent,
     CardDescription,
     CardFooter,
