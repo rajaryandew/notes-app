@@ -13,17 +13,15 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 
-import { type Dispatch, type SetStateAction, useState } from "react";
+import {useState } from "react";
 import type { NewNote, Note } from "@/lib/types";
 import { createNote } from "@/lib/server-actions/note";
 import { MotionButton } from "../ui/motion";
 import { toast } from "sonner";
+import { useNote } from "@/context/NoteContext";
 
-export default function AddNote({
-    setNotes,
-}: {
-    setNotes: Dispatch<SetStateAction<Note[]>>;
-}) {
+export default function AddNote() {
+    const setNotes = useNote().setNotesList
     const [title, setTitle] = useState("Title");
     const [description, setDescription] = useState("");
 

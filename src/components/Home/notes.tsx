@@ -1,17 +1,14 @@
-import { type Note as NoteType } from "@/lib/types";
 import Note from "./note";
-import type { Dispatch, SetStateAction } from "react";
 import { AnimatePresence, motion } from "motion/react";
+import { useNote } from "@/context/NoteContext";
 
 export default function Notes({
     searchValue,
-    notes,
-    setNotes
 }: {
     searchValue: string;
-    notes: NoteType[];
-    setNotes:Dispatch<SetStateAction<NoteType[]>>
 }) {
+
+    const notes = useNote().notesList
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -26,7 +23,6 @@ export default function Notes({
                         <motion.div key={note.id} layout>
                             <Note
                                 note={note}
-                                setNotes={setNotes}
                                 index={note.id}
                             ></Note>
                         </motion.div>

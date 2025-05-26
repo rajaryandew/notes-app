@@ -6,22 +6,23 @@ import {
     CardHeader,
     CardTitle,
 } from "../ui/card";
-import type { Dispatch, SetStateAction } from "react";
 import { removeNote } from "@/lib/server-actions/note";
 import Delete from "./delete";
 import EditNote from "./update-note";
 import { MotionCard } from "../ui/motion";
 import { toast } from "sonner";
+import { useNote } from "@/context/NoteContext";
 
 export default function Note({
     note,
     index,
-    setNotes,
 }: {
     note: Note;
     index: number;
-    setNotes: Dispatch<SetStateAction<Note[]>>;
 }) {
+
+    const setNotes = useNote().setNotesList
+
     async function onDelete() {
         try{
             await removeNote(note);
