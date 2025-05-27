@@ -7,10 +7,12 @@ import AddNote from "./add-note";
 import { getNotes } from "@/lib/server-actions/note";
 import { toast } from "sonner";
 import { useNote } from "@/context/NoteContext";
+import Loading from "./loading";
 
 export default function Content() {
     const [searchValue, setSearchValue] = useState("");
     const { setNotesList } = useNote();
+    const [loading,setLoading] = useState(true)
 
     useEffect(() => {
         getNotes()
@@ -21,7 +23,8 @@ export default function Content() {
                 toast.error("Something unexpected happened!!", {
                     description: res.message,
                 });
-            });
+            })
+            .finally(() => setLoading(false));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -37,7 +40,7 @@ export default function Content() {
                 />
             </div>
             <section className="flex-1 overflow-y-auto  ">
-                <Notes searchValue={searchValue} />
+                {loading === true ? (<Loading/>) : (<Notes searchValue={searchValue}/>)}
             </section>
         </CardContent>
     );

@@ -12,15 +12,8 @@ import { MotionCard } from "../ui/motion";
 import { useNote } from "@/context/NoteContext";
 import { onDelete } from "@/lib/note-client";
 
-export default function Note({
-    note,
-    index,
-}: {
-    note: Note;
-    index: number;
-}) {
-
-    const setNotes = useNote().setNotesList
+export default function Note({ note, index }: { note: Note; index: number }) {
+    const setNotes = useNote().setNotesList;
 
     return (
         <MotionCard
