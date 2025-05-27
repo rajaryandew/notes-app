@@ -31,9 +31,9 @@ export default function Content() {
     }, []);
 
     return (
-        <CardContent className="px-4 flex flex-col overflow-auto">
+        <CardContent className="px-4 flex flex-col overflow-auto ">
             <div className="flex justify-between items-center w-full mb-3">
-                <AddNote />
+                <AddNote variant={"default"} />
                 <Input
                     className="grow-0 basis-40 md:basis-80"
                     onChange={(e) => setSearchValue(e.target.value.trim())}
@@ -41,7 +41,7 @@ export default function Content() {
                     placeholder="Search notes..."
                 />
             </div>
-            <section className="flex-1 overflow-y-auto  ">
+            <section className="flex-1 overflow-y-auto ">
                 {loading === true ? (<Loading/>) : (<Notes searchValue={searchValue}/>)}
             </section>
         </CardContent>

@@ -17,8 +17,9 @@ import {useState } from "react";
 import { MotionButton } from "../ui/motion";
 import { useNote } from "@/context/NoteContext";
 import { addNote } from "@/lib/note-client";
+import { ButtonVariant } from "@/lib/types";
 
-export default function AddNote() {
+export default function AddNote({variant}:{variant:ButtonVariant}) {
     const setNotes = useNote().setNotesList
     const [title, setTitle] = useState("Title");
     const [description, setDescription] = useState("");
@@ -29,6 +30,7 @@ export default function AddNote() {
                 <MotionButton
                     whileTap={{ scale: 0.8 }}
                     className=" font-semibold flex-1/8 grow-0"
+                    variant={variant}
                 >
                     New Note
                 </MotionButton>
