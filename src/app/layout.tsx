@@ -4,15 +4,16 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
-  title: "Notes app",
-  description: "A simple notes app"
-}
+    title: "QuickNote",
+    description:
+        "A simple and clean notes app to quickly jot down ideas, make lists, and keep your thoughts organized — anytime, anywhere.",
+};
 
 export default function RootLayout({ children }: {
   children: React.ReactNode
 }) {
   return (
-    <html suppressHydrationWarning>
+    <html suppressHydrationWarning lang="en">
       <body className="bg-background h-screen w-screen ">
         <ThemeProvider
           attribute="class"

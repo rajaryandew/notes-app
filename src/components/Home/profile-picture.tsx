@@ -10,6 +10,8 @@ export default function ProfilePicture({ src }: { src: string }) {
                     <AvatarImage
                         className="rounded-full size-10 hover:opacity-80"
                         src={src}
+                        alt="profile picture"
+                        aria-label="profile pictue"
                     />
                     <AvatarFallback asChild>
                         <div className="rounded-full size-10 hover:opacity-80 ">
