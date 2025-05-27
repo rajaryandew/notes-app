@@ -42,7 +42,7 @@ Whether you're a student jotting down ideas or a developer organizing thoughts, 
 |-----------------|----------------------------------|
 | Frontend        | Next.js 14, TypeScript           |
 | Styling         | Tailwind CSS                     |
-| Backend         | Next.js API Routes, Prisma       |
+| Backend         | Next.js Server actions, Prisma   |
 | Database        | PostgreSQL                       |
 | Authentication  | JWT (JSON Web Tokens)            |
 | Dev Tools       | ESLint, Prettier                 |
@@ -129,7 +129,7 @@ notes-app/
 
 - User hits the frontend — a clean UI built with Tailwind + Next.js layouts  
 - Next.js App Router handles pages and server-side logic seamlessly  
-- API routes connect to a PostgreSQL database using Prisma  
+- Server actions connect to a PostgreSQL database using Prisma  
 - Auth is JWT-based: password hashing via bcrypt, token verification in middleware  
 - Notes are created, edited, or deleted from the PostgreSQL DB with real-time feedback
 
