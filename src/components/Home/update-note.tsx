@@ -74,7 +74,7 @@ export default function EditNote({
                                     editNote(note, { title, description },setNotes)
                                 }
                             >
-                                Edit
+                                Save
                             </Button>
                         </DialogClose>
                     </div>
