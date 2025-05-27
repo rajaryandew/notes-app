@@ -19,7 +19,7 @@ export default function Loading() {
 
             <CardContent>
                 <CardDescription>
-                    <Skeleton className="h-4 w-full mb-2" />
+                    <Skeleton className="h-4 w-full mb-1" />
                 </CardDescription>
             </CardContent>
 

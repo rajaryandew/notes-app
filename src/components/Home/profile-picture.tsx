@@ -7,8 +7,15 @@ export default function ProfilePicture({ src }: { src: string }) {
         <Popover>
             <PopoverTrigger asChild>
                 <Avatar>
-                    <AvatarImage className="rounded-full size-10 hover:opacity-80" src={src} />
-                    <AvatarFallback>CN</AvatarFallback>
+                    <AvatarImage
+                        className="rounded-full size-10 hover:opacity-80"
+                        src={src}
+                    />
+                    <AvatarFallback asChild>
+                        <div className="rounded-full size-10 hover:opacity-80 ">
+                            <p>CN</p>
+                        </div>
+                    </AvatarFallback>
                 </Avatar>
             </PopoverTrigger>
             <PopoverContent className="m-3" asChild>

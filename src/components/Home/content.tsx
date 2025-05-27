@@ -24,7 +24,9 @@ export default function Content() {
                     description: res.message,
                 });
             })
-            .finally(() => setLoading(false));
+            .finally(() => {
+                setLoading(false)
+            });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
