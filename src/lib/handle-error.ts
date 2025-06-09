@@ -1,6 +1,10 @@
 import { Prisma } from "@/generated/prisma";
 import { toast } from "sonner";
 
+/**
+ * @param error the error object that server is returning
+ * @param fallbackMsg message to display by default
+ */
 export function handlePrismaError(
     error: unknown,
     fallbackMsg = "Something went wrong"

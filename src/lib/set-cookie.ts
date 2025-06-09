@@ -3,7 +3,11 @@ import jwt from 'jsonwebtoken'
 import { ENVIORMENT, JWT_SECRET } from "./config";
 import { cookies } from "next/headers";
 
-export async function setUsernameCookie(
+/**
+ * sets cookie used for auth
+ * @param user user object to set in the cookie
+ */
+export async function setAuthCookie(
     user: User,
 ) {
     const cookieStore = await cookies()

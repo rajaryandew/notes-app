@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { signup } from "@/lib/server-actions/auth/signup"
+import { signup } from "@/lib/server-actions/auth"
 export function SignupForm({
   className,
   ...props
