@@ -16,9 +16,11 @@ model profile {
 }
 
 model note {
-  id          Int     @id @default(autoincrement())
-  title       String  @db.VarChar(255)
+  id          Int      @id @default(autoincrement())
+  title       String   @db.VarChar(255)
   description String?
-  username    String  @db.VarChar(255)
-  profile     profile @relation(fields: [username], references: [username], onDelete: Cascade, onUpdate: NoAction, map: "fk_user")
+  username    String   @db.VarChar(255)
+  profile     profile  @relation(fields: [username], references: [username], onDelete: Cascade, onUpdate: NoAction, map: "fk_user")
+  isDeleted   Boolean  @default(false)
+  expiresAt   DateTime?
 }

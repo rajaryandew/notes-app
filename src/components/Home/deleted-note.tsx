@@ -9,12 +9,12 @@ import {
 import Delete from "./delete";
 import EditNote from "./update-note";
 import { MotionCard } from "../ui/motion";
-import { useNote } from "@/context/NoteContext";
-import { tempDeleteNote } from "@/lib/note-client";
+import { deleteNote } from "@/lib/note-client";
+import { useDeletedNote } from "@/context/DeletedNoteContext";
+import RestoreNote from "./restore-note";
+import PermanentlyDelete from "./permanently-delete-note";
 
-export default function Note({ note, index }: { note: Note; index: number }) {
-    const setNotes = useNote().setNotesList;
-
+export default function DeletedNote({ note, index }: { note: Note; index: number }) {
     return (
         <MotionCard
             initial={{ scale: 0 }}
@@ -30,9 +30,9 @@ export default function Note({ note, index }: { note: Note; index: number }) {
             <CardContent>
                 <CardDescription>{note.description || "--"}</CardDescription>
             </CardContent>
-            <CardFooter className="flex gap-4 justify-end items-center">
-                <EditNote setNotes={setNotes} note={note} />
-                <Delete onDelete={() => tempDeleteNote(note,setNotes)} />
+            <CardFooter className="grid grid-cols-1 grid-rows-1 gap-4">
+                <RestoreNote note={note}/>
+                <PermanentlyDelete note={note}/>
             </CardFooter>
         </MotionCard>
     );

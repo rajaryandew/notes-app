@@ -8,18 +8,28 @@ import {
     DialogTitle,
 } from "../ui/dialog";
 import { Button } from "../ui/button";
+import { deleteNote } from "@/lib/note-client";
+import { Note } from "@/lib/types";
+import { Dispatch, SetStateAction } from "react";
+import { useDeletedNote } from "@/context/DeletedNoteContext";
 
-export default function Delete({ onDelete }: { onDelete: () => void }) {
+export default function PermanentlyDelete({
+    note,
+}: {
+    note: Note;
+}) {
+    const {setDeletedNotes} = useDeletedNote()
+
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button>Delete</Button>
+                <Button variant="destructive">Delete permanently</Button>
             </DialogTrigger>
             <DialogContent className="w-sm">
                 <DialogHeader>
                     <DialogTitle>Confirm deleting this note</DialogTitle>
                     <DialogDescription className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                        This note will still be inside recycle bin.
+                        Be careful! This action cannot be undone.
                     </DialogDescription>
                 </DialogHeader>
                 <DialogClose asChild>
@@ -28,7 +38,7 @@ export default function Delete({ onDelete }: { onDelete: () => void }) {
                             className="col-start-1"
                             autoFocus
                             variant="destructive"
-                            onClick={onDelete}
+                            onClick={() => deleteNote(note,setDeletedNotes)}
                         >
                             Delete
                         </Button>

@@ -1,5 +1,12 @@
 import { NewNote, Note } from "./types";
-import { createNote, removeNote, updateNote } from "./server-actions/note";
+import {
+    createNote,
+    getActiveNotes,
+    removeNote,
+    softDeleteNote,
+    undeleteNote,
+    updateNote,
+} from "./server-actions/note";
 import { toast } from "sonner";
 import { handlePrismaError } from "./handle-error";
 import { Dispatch, SetStateAction } from "react";
@@ -45,15 +52,36 @@ export async function addNote(
  * deletes notes from database and then updates the ui
  * @param note note object to delete
  */
-export async function onDelete(
+export async function deleteNote(
     note: Note,
     setNotes: Dispatch<SetStateAction<Note[]>>
 ) {
     try {
         removeNote(note).then(() => {
             setNotes((n) => n.filter((no) => no.id !== note.id));
-            toast("Note removed ⚠️", {
+            toast("Note permanently removed ⚠️", {
                 description: "This action cannot be undone.",
+            });
+        });
+    } catch (err) {
+        handlePrismaError(err);
+    }
+}
+
+/**
+ * deletes notes from database and then updates the ui
+ * @param note note object to delete
+ */
+export async function tempDeleteNote(
+    note: Note,
+    setNotes: Dispatch<SetStateAction<Note[]>>
+) {
+    try {
+        softDeleteNote(note).then(() => {
+            setNotes((n) => n.filter((no) => no.id !== note.id));
+            toast("Note removed ⚠️", {
+                description:
+                    "This note can still be accessed through recycle bin.",
             });
         });
     } catch (err) {
@@ -64,7 +92,7 @@ export async function onDelete(
 /**
  * edits note in the database by accessing the actual note using `note` and updates with the updated note data
  * @param note the initial notes object
- * @param updatedNote updated notes opject
+ * @param updatedNote updated notes object
  */
 export async function editNote(
     note: Note,
@@ -76,6 +104,27 @@ export async function editNote(
             setNotes(notes?.reverse() ?? []);
             toast("Note updated ✅", {
                 description: "Changes saved like a boss 💾",
+            });
+        });
+    } catch (err) {
+        handlePrismaError(err);
+    }
+}
+
+export async function restoreNote(
+    note: Note,
+    setNotes: Dispatch<SetStateAction<Note[]>>,
+    setDeletedNotes: Dispatch<SetStateAction<Note[]>>
+) {
+    try {
+        undeleteNote(note).then(async (res) => {
+            const deletedNotes = res?.deletedNotes
+            const activeNotes = await getActiveNotes()
+            console.log(activeNotes)
+            setNotes(activeNotes?.reverse() ?? []);
+            setDeletedNotes(deletedNotes?.reverse() ?? [])
+            toast("Note restored ✅", {
+                description: "This note is restored from the recycle bin ✅",
             });
         });
     } catch (err) {

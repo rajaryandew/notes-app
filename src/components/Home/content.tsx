@@ -4,7 +4,7 @@ import { Input } from "../ui/input";
 import Notes from "./notes";
 import { useEffect, useState } from "react";
 import AddNote from "./add-note";
-import { getNotes } from "@/lib/server-actions/note";
+import { getActiveNotes } from "@/lib/server-actions/note";
 import { toast } from "sonner";
 import { useNote } from "@/context/NoteContext";
 import Loading from "./loading";
@@ -15,7 +15,7 @@ export default function Content() {
     const [loading,setLoading] = useState(true)
 
     useEffect(() => {
-        getNotes()
+        getActiveNotes()
             .then((notes) => {
                 setNotesList(notes?.reverse() ?? []);
             })

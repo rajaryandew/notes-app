@@ -7,7 +7,8 @@ export type Note = {
     id:number,
     title:string,
     description?:string | null,
-    username:string
+    username:string,
+    isDeleted?: boolean
 }
 
 export type NewNote = {
