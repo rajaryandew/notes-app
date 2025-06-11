@@ -10,7 +10,6 @@ import {
 import { Button } from "../ui/button";
 import { deleteNote } from "@/lib/note-client";
 import { Note } from "@/lib/types";
-import { Dispatch, SetStateAction } from "react";
 import { useDeletedNote } from "@/context/DeletedNoteContext";
 
 export default function PermanentlyDelete({

@@ -10,11 +10,8 @@ import {
     SheetTrigger,
 } from "../ui/sheet";
 import { Separator } from "../ui/separator";
-import Notes from "./notes";
 import { useDeletedNote } from "@/context/DeletedNoteContext";
 import { AnimatePresence, motion } from "motion/react";
-import { MotionButton } from "../ui/motion";
-import EmptyNotes from "./empty-notes";
 import DeletedNote from "./deleted-note";
 import { useEffect } from "react";
 import { getDeletedNotes } from "@/lib/server-actions/note";
@@ -26,7 +23,10 @@ export default function RecycleBin() {
             .then((deletedNotes) => {
                 setDeletedNotes(deletedNotes?.reverse() || []);
             })
-            .catch((err) => {console.log(err)});
+            .catch((err) => {
+                console.log(err);
+            });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <Sheet>
@@ -36,7 +36,7 @@ export default function RecycleBin() {
                     Recycle Bin
                 </Button>
             </SheetTrigger>
-            <SheetContent className="w-11/12" >
+            <SheetContent className="w-11/12">
                 <SheetHeader>
                     <SheetTitle>Recycle bin</SheetTitle>
                     <SheetDescription>

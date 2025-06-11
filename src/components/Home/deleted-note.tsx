@@ -6,11 +6,7 @@ import {
     CardHeader,
     CardTitle,
 } from "../ui/card";
-import Delete from "./delete";
-import EditNote from "./update-note";
 import { MotionCard } from "../ui/motion";
-import { deleteNote } from "@/lib/note-client";
-import { useDeletedNote } from "@/context/DeletedNoteContext";
 import RestoreNote from "./restore-note";
 import PermanentlyDelete from "./permanently-delete-note";
 

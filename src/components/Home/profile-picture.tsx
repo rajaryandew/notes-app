@@ -5,14 +5,9 @@ import { LogoutButton } from "./logout-button";
 import RecycleBin from "./recycle-bin";
 import {
     DeletedNoteProvider,
-    useDeletedNote,
 } from "@/context/DeletedNoteContext";
-import { useEffect, useState } from "react";
-import { getDeletedNotes } from "@/lib/server-actions/note";
-import { Note } from "@/lib/types";
 
 export default function ProfilePicture({ src }: { src: string }) {
-    const [deletedNotes,setDeletedNotes] = useState<Note[]>([])
     return (
         <Popover>
             <PopoverTrigger asChild>
