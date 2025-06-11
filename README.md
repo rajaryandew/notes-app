@@ -31,6 +31,7 @@ Whether you're a student jotting down ideas or a developer organizing thoughts, 
 🔹 **Tailwind CSS** - Utility-first CSS framework for fast UI development  
 🔹 **TypeScript** - Ensures a robust and type-safe codebase  
 🔹 **JWT Authentication Ready** - Secure user auth using industry-standard tokens  
+🔹 **Recycle Bin** - Soft-delete system to recover accidentally deleted notes  
 🔹 **Responsive UI** - Works flawlessly on mobile, tablet, and desktop  
 🔹 **Developer Tools** - ESLint + Prettier for clean and consistent code
 
@@ -143,8 +144,7 @@ This project is licensed under the **[MIT License](./LICENSE)** — meaning you 
 
 ## 💬 About Me
 
-> I'm **[Aryan](https://github.com/rajaryandew)** – a 14 y/o dev who loves building full-stack stuff and learning cool tech.
->  
+> I'm **[Aryan](https://github.com/rajaryandew)** – a 14 y/o dev who loves building full-stack stuff and learning cool tech.  
 > If this helped you or inspired you, drop a ⭐, fork it, or just say hi 😄
 
 ---
