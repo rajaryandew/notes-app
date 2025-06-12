@@ -1,8 +1,10 @@
 import { NewNote, Note } from "./types";
 import {
     createNote,
+    deleteAllNotes,
     getActiveNotes,
     removeNote,
+    restoreAllNotes,
     softDeleteNote,
     undeleteNote,
     updateNote,
@@ -120,13 +122,40 @@ export async function restoreNote(
         undeleteNote(note).then(async (res) => {
             const deletedNotes = res?.deletedNotes
             const activeNotes = await getActiveNotes()
-            console.log(activeNotes)
             setNotes(activeNotes?.reverse() ?? []);
             setDeletedNotes(deletedNotes?.reverse() ?? [])
             toast("Note restored ✅", {
                 description: "This note is restored from the recycle bin ✅",
             });
         });
+    } catch (err) {
+        handlePrismaError(err);
+    }
+}
+
+export async function restoreAll(
+    setNotes: Dispatch<SetStateAction<Note[]>>,
+    setDeletedNotes: Dispatch<SetStateAction<Note[]>>
+) {
+    try {
+        await restoreAllNotes();
+        const notes = await getActiveNotes()
+        setNotes(notes?.reverse() ?? [])
+        setDeletedNotes([])
+    } catch (err) {
+        handlePrismaError(err);
+    }
+}
+
+export async function deleteAll(
+    setNotes: Dispatch<SetStateAction<Note[]>>,
+    setDeletedNotes: Dispatch<SetStateAction<Note[]>>
+) {
+    try {
+        await deleteAllNotes();
+        const notes = await getActiveNotes()
+        setNotes(notes?.reverse() ?? [])
+        setDeletedNotes([])
     } catch (err) {
         handlePrismaError(err);
     }

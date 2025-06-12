@@ -15,6 +15,8 @@ import { AnimatePresence, motion } from "motion/react";
 import DeletedNote from "./deleted-note";
 import { useEffect } from "react";
 import { getDeletedNotes } from "@/lib/server-actions/note";
+import { RestoreAll } from "./restore-all-notes-dialog";
+import { DeleteAll } from "./delete-all-notes-dialog";
 
 export default function RecycleBin() {
     const { setDeletedNotes, deletedNotes } = useDeletedNote();
@@ -45,6 +47,10 @@ export default function RecycleBin() {
                     <Separator className="mt-4" />
                 </SheetHeader>
                 <div className="px-2 h-full w-full overflow-auto">
+                    <div className="grid grid-cols-2 grid-rows-1 gap-2 pb-4 px-2">
+                        <RestoreAll/>
+                        <DeleteAll/>
+                    </div>
                     <div className="grid grid-cols-1 gap-2">
                         <AnimatePresence>
                             {deletedNotes.map((note) => (

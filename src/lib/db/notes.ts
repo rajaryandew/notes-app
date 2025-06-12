@@ -75,3 +75,25 @@ export async function restoreNoteRecord(note: Note){
         }
     })
 }
+
+export async function restoreAllRecord(username:string){
+    await prisma.note.updateMany({
+        where:{
+            username,
+            isDeleted: true
+        },
+        data: {
+            isDeleted:false,
+            expiresAt:null
+        }
+    })
+}
+
+export async function deleteAllRecord(username:string){
+    await prisma.note.deleteMany({
+        where:{
+            username,
+            isDeleted:true
+        }
+    })
+}

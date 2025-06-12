@@ -2,9 +2,11 @@
 
 import {
     createNoteRecord,
+    deleteAllRecord,
     deleteNoteRecord,
     getActiveNotesRecord,
     getDeletedNotesRecord,
+    restoreAllRecord,
     restoreNoteRecord,
     softDeleteNoteRecord,
     updateNoteRecord,
@@ -95,6 +97,28 @@ export async function undeleteNote(note: Note) {
     } catch(error) {
         if(error instanceof Error){
             throw error.message
+        }
+    }
+}
+
+export async function restoreAllNotes(){
+    const username = await getCookie()
+    try{
+        await restoreAllRecord(username)
+    }catch(error){
+        if (error instanceof Error) {
+            throw error.message;
+        }
+    }
+}
+
+export async function deleteAllNotes(){
+    const username = await getCookie()
+    try{
+        await deleteAllRecord(username)
+    } catch(error){
+        if (error instanceof Error) {
+            throw error.message;
         }
     }
 }
