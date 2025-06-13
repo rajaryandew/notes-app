@@ -1,6 +1,7 @@
 import jwt, { JwtPayload } from "jsonwebtoken"
 import { JWT_SECRET } from "./config";
 import { cookies } from "next/headers";
+import { getUserFromSession } from "./redis/auth";
 
 export async function getCookie(){
     const cookieStore = await cookies()
@@ -8,10 +9,10 @@ export async function getCookie(){
     try {
         if(token){
             const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
-            const username = decoded.id
-            return username
+            const username = await getUserFromSession(decoded.id);
+            return username ?? ""
         }        
     } catch{
-        return
+        return ""
     }
 }

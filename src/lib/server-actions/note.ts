@@ -18,7 +18,7 @@ import { Prisma } from "@/generated/prisma";
 export async function getActiveNotes() {
     try {
         const username = await getCookie();
-        const notes = await getActiveNotesRecord(username);
+        const notes = await getActiveNotesRecord(username!);
         return notes;
     } catch (err) {
         if (err instanceof Prisma.PrismaClientInitializationError) {
@@ -30,7 +30,7 @@ export async function getActiveNotes() {
 export async function getDeletedNotes() {
     try {
         const username = await getCookie();
-        const deletedNotes = await getDeletedNotesRecord(username);
+        const deletedNotes = await getDeletedNotesRecord(username!);
         return deletedNotes;
     } catch (err) {
         if (err instanceof Prisma.PrismaClientInitializationError) {
@@ -42,7 +42,7 @@ export async function getDeletedNotes() {
 export async function createNote(note: NewNote) {
     try {
         const username = await getCookie();
-        await createNoteRecord(username, note);
+        await createNoteRecord(username!, note);
         return await getActiveNotes();
     } catch (err) {
         if (err instanceof Prisma.PrismaClientInitializationError) {
@@ -104,7 +104,7 @@ export async function undeleteNote(note: Note) {
 export async function restoreAllNotes(){
     const username = await getCookie()
     try{
-        await restoreAllRecord(username)
+        await restoreAllRecord(username!)
     }catch(error){
         if (error instanceof Error) {
             throw error.message;
@@ -115,7 +115,7 @@ export async function restoreAllNotes(){
 export async function deleteAllNotes(){
     const username = await getCookie()
     try{
-        await deleteAllRecord(username)
+        await deleteAllRecord(username!)
     } catch(error){
         if (error instanceof Error) {
             throw error.message;

@@ -1,4 +1,4 @@
-import { type User } from "./types";
+
 import jwt from 'jsonwebtoken'
 import { ENVIORMENT, JWT_SECRET } from "./config";
 import { cookies } from "next/headers";
@@ -8,10 +8,10 @@ import { cookies } from "next/headers";
  * @param user user object to set in the cookie
  */
 export async function setAuthCookie(
-    user: User,
+    sessionId:string,
 ) {
     const cookieStore = await cookies()
-    const token = jwt.sign({id:user.username},JWT_SECRET,{
+    const token = jwt.sign({id:sessionId},JWT_SECRET,{
         expiresIn:"30d",
     })
 
