@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { login } from "@/lib/server-actions/auth"
+import PasswordInput from "../password-input"
 
 export function LoginForm({
   className,
@@ -39,7 +40,7 @@ export function LoginForm({
               </div>
               <div className="grid gap-3">
                   <Label htmlFor="password">Password</Label>
-                  <Input id="password" name="password" type="password" required />
+                  <PasswordInput/>
               </div>
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">
