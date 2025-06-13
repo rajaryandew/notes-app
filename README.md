@@ -30,7 +30,7 @@ Whether you're a student jotting down ideas or a developer organizing thoughts, 
 🔹 **Prisma ORM** - Type-safe database management with support for PostgreSQL  
 🔹 **Tailwind CSS** - Utility-first CSS framework for fast UI development  
 🔹 **TypeScript** - Ensures a robust and type-safe codebase  
-🔹 **JWT Authentication Ready** - Secure user auth using industry-standard tokens  
+🔹 **Hybrid Authentication** - Secure JWT cookie holds session ID, while Redis stores full session data  
 🔹 **Recycle Bin** - Soft-delete system to recover accidentally deleted notes  
 🔹 **Responsive UI** - Works flawlessly on mobile, tablet, and desktop  
 🔹 **Developer Tools** - ESLint + Prettier for clean and consistent code
@@ -39,15 +39,15 @@ Whether you're a student jotting down ideas or a developer organizing thoughts, 
 
 ## ⚙️ Tech Stack
 
-| Area            | Tech                             |
-|-----------------|----------------------------------|
-| Frontend        | Next.js 14, TypeScript           |
-| Styling         | Tailwind CSS                     |
-| Backend         | Next.js Server actions, Prisma   |
-| Database        | PostgreSQL                       |
-| Authentication  | JWT (JSON Web Tokens)            |
-| Dev Tools       | ESLint, Prettier                 |
-| Deployment      | Vercel                           |
+| Area            | Tech                                      |
+|-----------------|-------------------------------------------|
+| Frontend        | Next.js 14, TypeScript                    |
+| Styling         | Tailwind CSS                              |
+| Backend         | Next.js Server actions, Prisma            |
+| Database        | PostgreSQL                                |
+| Authentication  | JWT + Redis Sessions                      |
+| Dev Tools       | ESLint, Prettier                          |
+| Deployment      | Vercel                                    |
 
 ---
 
@@ -80,9 +80,12 @@ DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<database>?schema
 SALT_ROUNDS=10
 JWT_SECRET="your-secret-key"
 ENVOIRMENT="prod" || "local"
+
+REDIS_URL="your-redis-connection-url"
+REDIS_TOKEN="your-redis-access-token"
 ```
 
-> 💡 Use your PostgreSQL credentials or copy the connection string from services like Supabase, Railway, or Neon.
+> 💡 `JWT_SECRET` is still used to sign the cookie, but the actual user session is stored in Redis and referenced via a `sessionID` in the token.
 
 ---
 
@@ -131,7 +134,7 @@ notes-app/
 - User hits the frontend — a clean UI built with Tailwind + Next.js layouts  
 - Next.js App Router handles pages and server-side logic seamlessly  
 - Server actions connect to a PostgreSQL database using Prisma  
-- Auth is JWT-based: password hashing via bcrypt, token verification in middleware  
+- Auth is hybrid-based: a JWT cookie stores a signed `sessionID`, which is used to look up the full session data in Redis  
 - Notes are created, edited, or deleted from the PostgreSQL DB with real-time feedback
 
 ---
@@ -148,3 +151,4 @@ This project is licensed under the **[MIT License](./LICENSE)** — meaning you 
 > If this helped you or inspired you, drop a ⭐, fork it, or just say hi 😄
 
 ---
+
