@@ -24,5 +24,5 @@ export async function getUserFromSession(sessionId:string){
 }
 
 export async function deleteSession(sessionId:string){
-    await redis.del(sessionId)
+    await redis.del(`user:${sessionId}`)
 }
