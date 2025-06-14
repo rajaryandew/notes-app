@@ -38,7 +38,7 @@ export default function RecycleBin() {
                     Recycle Bin
                 </Button>
             </SheetTrigger>
-            <SheetContent className="w-11/12">
+            <SheetContent>
                 <SheetHeader>
                     <SheetTitle>Recycle bin</SheetTitle>
                     <SheetDescription>
