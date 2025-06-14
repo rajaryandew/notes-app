@@ -21,5 +21,7 @@ export async function GET(req: NextRequest) {
         });
 
         return NextResponse.json({ deletedCount: result.count });
-    } catch (err) {}
+    } catch (err) {
+        return NextResponse.json({err})
+    }
 }
