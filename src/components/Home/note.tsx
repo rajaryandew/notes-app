@@ -12,7 +12,6 @@ import { MotionCard } from "../ui/motion";
 import { useNote } from "@/context/NoteContext";
 import { tempDeleteNote } from "@/lib/note-client";
 import NoteActionDropdown from "./note-action-dropdown";
-import { Pin } from "lucide-react";
 import PinnedBadge from "./pinned-badge";
 
 export default function Note({ note, index }: { note: Note; index: number }) {
