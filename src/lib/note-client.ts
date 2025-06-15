@@ -12,6 +12,7 @@ import {
 import { toast } from "sonner";
 import { handlePrismaError } from "./handle-error";
 import { Dispatch, SetStateAction } from "react";
+import { pinNote, unpinNote } from "./server-actions/note";
 
 // setNotes from note context
 
@@ -33,7 +34,13 @@ export async function addNote(
     if (title) {
         try {
             await createNote(note).then((notes) => {
-                setNotes(notes?.reverse() ?? []);
+                setNotes(
+                    notes
+                        ?.reverse()
+                        .sort(
+                            (a, b) => Number(b.isPinned) - Number(a.isPinned)
+                        ) ?? []
+                );
                 setTitle("Title");
                 setDescription("");
                 toast("Note added successfully 📝", {
@@ -103,7 +110,12 @@ export async function editNote(
 ) {
     try {
         updateNote(note, updatedNote).then((notes) => {
-            setNotes(notes?.reverse() ?? []);
+            setNotes(
+                notes
+                    ?.reverse()
+                    .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ??
+                    []
+            );
             toast("Note updated ✅", {
                 description: "Changes saved like a boss 💾",
             });
@@ -120,10 +132,15 @@ export async function restoreNote(
 ) {
     try {
         undeleteNote(note).then(async (res) => {
-            const deletedNotes = res?.deletedNotes
-            const activeNotes = await getActiveNotes()
-            setNotes(activeNotes?.reverse() ?? []);
-            setDeletedNotes(deletedNotes?.reverse() ?? [])
+            const deletedNotes = res?.deletedNotes;
+            const activeNotes = await getActiveNotes();
+            setNotes(
+                activeNotes
+                    ?.reverse()
+                    .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ??
+                    []
+            );
+            setDeletedNotes(deletedNotes?.reverse() ?? []);
             toast("Note restored ✅", {
                 description: "This note is restored from the recycle bin ✅",
             });
@@ -139,9 +156,13 @@ export async function restoreAll(
 ) {
     try {
         await restoreAllNotes();
-        const notes = await getActiveNotes()
-        setNotes(notes?.reverse() ?? [])
-        setDeletedNotes([])
+        const notes = await getActiveNotes();
+        setNotes(
+            notes
+                ?.reverse()
+                .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ?? []
+        );
+        setDeletedNotes([]);
     } catch (err) {
         handlePrismaError(err);
     }
@@ -153,9 +174,42 @@ export async function deleteAll(
 ) {
     try {
         await deleteAllNotes();
-        const notes = await getActiveNotes()
-        setNotes(notes?.reverse() ?? [])
-        setDeletedNotes([])
+        const notes = await getActiveNotes();
+        setNotes(
+            notes
+                ?.reverse()
+                .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ?? []
+        );
+        setDeletedNotes([]);
+    } catch (err) {
+        handlePrismaError(err);
+    }
+}
+
+/**
+ * Toggles the pinned state of a note and updates the UI accordingly.
+ * @param note The note object to pin or unpin.
+ * @param setNotes State setter for notes.
+ */
+export async function toggleNotePin(
+    note: Note,
+    setNotes: Dispatch<SetStateAction<Note[]>>
+) {
+    try {
+        const action = note.isPinned ? unpinNote : pinNote;
+        action(note).then((notes) => {
+            setNotes(
+                notes
+                    ?.reverse()
+                    .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ??
+                    []
+            );
+            toast(note.isPinned ? "Note unpinned 📌" : "Note pinned 📌", {
+                description: note.isPinned
+                    ? "Note moved to unpinned section."
+                    : "Note moved to pinned section.",
+            });
+        });
     } catch (err) {
         handlePrismaError(err);
     }

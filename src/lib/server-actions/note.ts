@@ -6,9 +6,11 @@ import {
     deleteNoteRecord,
     getActiveNotesRecord,
     getDeletedNotesRecord,
+    pinNoteRecord,
     restoreAllRecord,
     restoreNoteRecord,
     softDeleteNoteRecord,
+    unpinNoteRecord,
     updateNoteRecord,
 } from "../db/notes";
 import { getCookie } from "../get-cookie";
@@ -119,6 +121,28 @@ export async function deleteAllNotes(){
     } catch(error){
         if (error instanceof Error) {
             throw error.message;
+        }
+    }
+}
+
+export async function pinNote(note: Note) {
+    try {
+        await pinNoteRecord(note);
+        return await getActiveNotes();
+    } catch (err) {
+        if (err instanceof Error) {
+            throw new Error(err.message);
+        }
+    }
+}
+
+export async function unpinNote(note: Note) {
+    try {
+        await unpinNoteRecord(note);
+        return await getActiveNotes();
+    } catch (err) {
+        if (err instanceof Error) {
+            throw new Error(err.message);
         }
     }
 }

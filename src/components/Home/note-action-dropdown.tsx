@@ -1,3 +1,4 @@
+'use client';
 import { Note } from "@/lib/types";
 import {
     DropdownMenu,
@@ -8,9 +9,11 @@ import {
     DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
 import { EllipsisVertical, Pin, PinOff } from "lucide-react";
-import { Button } from "../ui/button";
+import { toggleNotePin } from "@/lib/note-client";
+import { useNote } from "@/context/NoteContext";
 
 export default function NoteActionDropdown({ note }: { note: Note }) {
+    const setNotes = useNote().setNotesList;
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -19,7 +22,7 @@ export default function NoteActionDropdown({ note }: { note: Note }) {
             <DropdownMenuContent className="p-2 w-44 " align="start">
                 <DropdownMenuLabel>Note actions</DropdownMenuLabel>
                 <DropdownMenuSeparator className="mb-4" />
-                <DropdownMenuItem className="" asChild>
+                <DropdownMenuItem onClick={() => toggleNotePin(note,setNotes)} asChild>
                     <div className="flex items-center justify-around">
                         {note.isPinned ? (
                             <>

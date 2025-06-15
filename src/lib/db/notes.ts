@@ -97,3 +97,23 @@ export async function deleteAllRecord(username:string){
         }
     })
 }
+export async function pinNoteRecord(note: Note) {
+    await prisma.note.update({
+        where: {
+            id: note.id,
+        },
+        data: {
+            isPinned: true,
+        },
+    });
+}
+export async function unpinNoteRecord(note: Note) {
+    await prisma.note.update({
+        where: {
+            id: note.id,
+        },
+        data: {
+            isPinned: false,
+        },
+    });
+}
