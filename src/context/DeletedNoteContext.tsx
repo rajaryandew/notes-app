@@ -7,11 +7,24 @@ type DeletedNoteContextType = {
     setDeletedNotes: React.Dispatch<React.SetStateAction<Note[]>>
 }
 
+/**
+ * Context for managing deleted notes state across the app.
+ * 
+ * Provides:
+ * - deletedNotes: Array of deleted notes.
+ * - setDeletedNotes: Function to update the deleted notes array.
+ */
 const DeletedNoteContext= createContext<DeletedNoteContextType>({
     deletedNotes: [],
     setDeletedNotes: () => {}
 });
 
+/**
+ * Provider component for DeletedNoteContext.
+ * 
+ * @param children - React children components that will have access to the deleted notes context.
+ * @returns JSX.Element wrapping children with deleted notes context provider.
+ */
 export function DeletedNoteProvider({children} : {children:React.ReactNode}){
     const [deletedNotes,setDeletedNotes] = useState<Note[]>([])
 
@@ -22,4 +35,9 @@ export function DeletedNoteProvider({children} : {children:React.ReactNode}){
     )
 }
 
+/**
+ * Custom hook to access the deleted notes context.
+ * 
+ * @returns The deleted notes context value.
+ */
 export const useDeletedNote = () => useContext(DeletedNoteContext)

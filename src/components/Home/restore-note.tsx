@@ -13,11 +13,22 @@ import { restoreNote } from "@/lib/note-client";
 import { useDeletedNote } from "@/context/DeletedNoteContext";
 import { useNote } from "@/context/NoteContext";
 
+/**
+ * RestoreNote component
+ *
+ * Renders a dialog to confirm restoring a deleted note.
+ * - On confirmation, restores the note and updates both active and deleted notes state.
+ *
+ * @param note - The note object to restore.
+ * @returns JSX.Element
+ */
 export default function RestoreNote({ note }: { note: Note }) {
+    // Get state setters from context
     const { setDeletedNotes } = useDeletedNote();
     const setActiveNotes = useNote().setNotesList;
     return (
         <Dialog>
+            {/* Button to open the restore confirmation dialog */}
             <DialogTrigger asChild>
                 <Button variant="secondary">Restore note</Button>
             </DialogTrigger>
@@ -29,6 +40,7 @@ export default function RestoreNote({ note }: { note: Note }) {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="flex justify-between items-center">
+                    {/* Confirm restore button */}
                     <DialogClose asChild>
                         <Button
                             onClick={() =>
@@ -42,6 +54,7 @@ export default function RestoreNote({ note }: { note: Note }) {
                             Restore
                         </Button>
                     </DialogClose>
+                    {/* Cancel button */}
                     <DialogClose asChild>
                         <Button variant="outline">Cancel</Button>
                     </DialogClose>

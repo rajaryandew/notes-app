@@ -8,6 +8,15 @@ import {
 } from "../ui/card";
 import { Skeleton } from "../ui/skeleton";
 
+/**
+ * Loading component
+ *
+ * Renders a grid of skeleton cards to indicate loading state for notes.
+ * - Each skeleton card visually mimics a note card.
+ * - Used while notes are being fetched from the server.
+ *
+ * @returns JSX.Element
+ */
 export default function Loading() {
     const skeletonCard = (
         <Card className="shrink flex-1/4">

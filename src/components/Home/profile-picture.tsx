@@ -5,9 +5,20 @@ import { LogoutButton } from "./logout-button";
 import RecycleBin from "./recycle-bin";
 import { DeletedNoteProvider } from "@/context/DeletedNoteContext";
 
+/**
+ * ProfilePicture component
+ *
+ * Renders the user's profile picture as an avatar.
+ * - Opens a popover on click with settings, recycle bin, and logout button.
+ * - Uses DeletedNoteProvider to provide context for the recycle bin.
+ *
+ * @param src - The image source URL for the profile picture.
+ * @returns JSX.Element
+ */
 export default function ProfilePicture({ src }: { src: string }) {
     return (
         <Popover>
+            {/* Avatar as popover trigger */}
             <PopoverTrigger asChild>
                 <Avatar>
                     <AvatarImage
@@ -23,6 +34,7 @@ export default function ProfilePicture({ src }: { src: string }) {
                     </AvatarFallback>
                 </Avatar>
             </PopoverTrigger>
+            {/* Popover content with settings, recycle bin, and logout */}
             <PopoverContent className="m-3" asChild>
                 <div className="flex flex-col gap-4">
                     <h4>Settings</h4>

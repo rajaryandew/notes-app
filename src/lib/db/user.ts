@@ -3,6 +3,12 @@ import prisma from "./prisma";
 import { SALT_ROUNDS } from "../config";
 import { Prisma } from "@/generated/prisma";
 
+/**
+ * Create a new user with a hashed password.
+ * @param username - The username for the new user.
+ * @param password - The plain text password to hash and store.
+ * @throws Error if the username already exists or on server error.
+ */
 export async function addUser(username:string,password:string){
     try{
         const hashedPassword = await bcrypt.hash(password,parseInt(SALT_ROUNDS))
@@ -21,6 +27,13 @@ export async function addUser(username:string,password:string){
     }
 }
 
+/**
+ * Retrieve a user by username and verify the password.
+ * @param username - The username to look up.
+ * @param password - The plain text password to verify.
+ * @returns Promise resolving to the user object if authentication succeeds.
+ * @throws Error if user is not found or password is incorrect.
+ */
 export async function getUser(username:string,password:string){
     try{
         const user = await prisma.profile.findFirst({

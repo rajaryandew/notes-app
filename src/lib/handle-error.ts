@@ -2,8 +2,13 @@ import { Prisma } from "@/generated/prisma";
 import { toast } from "sonner";
 
 /**
- * @param error the error object that server is returning
- * @param fallbackMsg message to display by default
+ * Handles and displays user-friendly error messages for known Prisma errors.
+ *
+ * - Checks the type and code of the Prisma error and shows a relevant toast notification.
+ * - Falls back to a generic message if the error is unknown.
+ *
+ * @param error - The error object returned from the server or Prisma client.
+ * @param fallbackMsg - The default message to display if the error is not recognized.
  */
 export function handlePrismaError(
     error: unknown,
@@ -27,14 +32,10 @@ export function handlePrismaError(
                 toast.error(`Database error [${error.code}]`);
                 return;
         }
-    }
-
-    else if (error instanceof Prisma.PrismaClientValidationError) {
+    } else if (error instanceof Prisma.PrismaClientValidationError) {
         toast.error("Invalid input. Please check your fields.");
         return;
-    }
-
-    else if (error instanceof Prisma.PrismaClientInitializationError) {
+    } else if (error instanceof Prisma.PrismaClientInitializationError) {
         toast.error("Can't connect to the database.");
         return;
     }

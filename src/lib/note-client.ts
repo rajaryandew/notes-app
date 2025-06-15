@@ -188,8 +188,13 @@ export async function deleteAll(
 
 /**
  * Toggles the pinned state of a note and updates the UI accordingly.
- * @param note The note object to pin or unpin.
- * @param setNotes State setter for notes.
+ *
+ * - If the note is currently pinned, it will be unpinned; otherwise, it will be pinned.
+ * - Updates the notes state with the new order (pinned notes first).
+ * - Shows a toast notification indicating the action.
+ *
+ * @param note - The note object to pin or unpin.
+ * @param setNotes - State setter function for updating the notes array.
  */
 export async function toggleNotePin(
     note: Note,

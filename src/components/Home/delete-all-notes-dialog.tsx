@@ -11,11 +11,22 @@ import { useDeletedNote } from "@/context/DeletedNoteContext";
 import { useNote } from "@/context/NoteContext";
 import { DialogClose, DialogDescription } from "@radix-ui/react-dialog";
 
+/**
+ * DeleteAll component
+ * 
+ * Renders a dialog for confirming deletion of all notes in the recycle bin.
+ * - Button is disabled if there are no deleted notes.
+ * - On confirmation, deletes all notes from the recycle bin and updates state.
+ * 
+ * @returns JSX.Element
+ */
 export function DeleteAll() {
+    // Get state setters and deleted notes from context
     const { setDeletedNotes, deletedNotes } = useDeletedNote();
     const setNotes = useNote().setNotesList;
     return (
         <Dialog>
+            {/* Trigger button to open the dialog */}
             <DialogTrigger asChild>
                 <Button variant="destructive" disabled={deletedNotes.length === 0}>
                     Delete all
@@ -30,6 +41,7 @@ export function DeleteAll() {
                     </DialogDescription>
                 </DialogHeader>
                 <div className="flex justify-between items-center">
+                    {/* Confirm delete button */}
                     <DialogClose asChild>
                         <Button
                             onClick={() =>
@@ -40,6 +52,7 @@ export function DeleteAll() {
                             Delete
                         </Button>
                     </DialogClose>
+                    {/* Cancel button */}
                     <DialogClose asChild>
                         <Button variant="secondary">Cancel</Button>
                     </DialogClose>

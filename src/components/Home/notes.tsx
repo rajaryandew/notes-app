@@ -3,17 +3,30 @@ import { AnimatePresence, motion } from "motion/react";
 import { useNote } from "@/context/NoteContext";
 import EmptyNotes from "./empty-notes";
 
+/**
+ * Notes component
+ *
+ * Displays a grid of notes, filtered by the search value.
+ * - If there are no notes, shows the EmptyNotes component.
+ * - Animates note cards using AnimatePresence and motion.
+ *
+ * @param searchValue - The string to filter notes by title or description.
+ * @returns JSX.Element
+ */
 export default function Notes({ searchValue }: { searchValue: string }) {
+    // Get the list of notes from context
     const notes = useNote().notesList;
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             <AnimatePresence>
                 {notes.length === 0 ? (
-                    <motion.div initial={{scale:0}} animate={{scale:1}} layout>
+                    // Show empty state if no notes
+                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} layout>
                         <EmptyNotes />
                     </motion.div>
                 ) : (
+                    // Filter and render notes matching the search value
                     notes.map((note) =>
                         note.title
                             .toLowerCase()

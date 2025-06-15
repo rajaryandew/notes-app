@@ -18,9 +18,21 @@ import { getDeletedNotes } from "@/lib/server-actions/note";
 import { RestoreAll } from "./restore-all-notes-dialog";
 import { DeleteAll } from "./delete-all-notes-dialog";
 
+/**
+ * RecycleBin component
+ *
+ * Renders a sheet (drawer) for accessing and managing deleted notes.
+ * - Fetches deleted notes on mount and updates context state.
+ * - Provides actions to restore all or delete all notes in the recycle bin.
+ * - Lists all deleted notes with animation.
+ *
+ * @returns JSX.Element
+ */
 export default function RecycleBin() {
+    // Get deleted notes and setter from context
     const { setDeletedNotes, deletedNotes } = useDeletedNote();
     useEffect(() => {
+        // Fetch deleted notes on mount
         getDeletedNotes()
             .then((deletedNotes) => {
                 setDeletedNotes(deletedNotes?.reverse() || []);
@@ -32,6 +44,7 @@ export default function RecycleBin() {
     }, []);
     return (
         <Sheet>
+            {/* Button to open the recycle bin sheet */}
             <SheetTrigger asChild>
                 <Button variant="outline">
                     <Trash />
@@ -47,10 +60,12 @@ export default function RecycleBin() {
                     <Separator className="mt-4" />
                 </SheetHeader>
                 <div className="px-2 h-full w-full overflow-auto">
+                    {/* Actions: restore all and delete all */}
                     <div className="grid grid-cols-2 grid-rows-1 gap-2 pb-4 px-2">
-                        <RestoreAll/>
-                        <DeleteAll/>
+                        <RestoreAll />
+                        <DeleteAll />
                     </div>
+                    {/* List of deleted notes */}
                     <div className="grid grid-cols-1 gap-2">
                         <AnimatePresence>
                             {deletedNotes.map((note) => (

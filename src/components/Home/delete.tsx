@@ -9,9 +9,20 @@ import {
 } from "../ui/dialog";
 import { Button } from "../ui/button";
 
+/**
+ * Delete component
+ *
+ * Renders a dialog to confirm deleting a note.
+ * - Shows a confirmation dialog before deleting.
+ * - Calls the provided onDelete callback when confirmed.
+ *
+ * @param onDelete - Callback function to execute when delete is confirmed.
+ * @returns JSX.Element
+ */
 export default function Delete({ onDelete }: { onDelete: () => void }) {
     return (
         <Dialog>
+            {/* Button to open the delete confirmation dialog */}
             <DialogTrigger asChild>
                 <Button>Delete</Button>
             </DialogTrigger>
@@ -22,6 +33,7 @@ export default function Delete({ onDelete }: { onDelete: () => void }) {
                         This note will still be inside recycle bin.
                     </DialogDescription>
                 </DialogHeader>
+                {/* Action buttons: Delete and Cancel */}
                 <DialogClose asChild>
                     <div className="grid grid-cols-3 w-full gap-x-2 mt-3">
                         <Button

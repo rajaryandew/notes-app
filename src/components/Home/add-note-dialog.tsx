@@ -16,12 +16,25 @@ import { useNote } from "@/context/NoteContext";
 import { useState } from "react";
 import { addNote } from "@/lib/note-client";
 
+/**
+ * AddNoteDialog component
+ *
+ * Renders a dialog for creating a new note.
+ * - Allows user to input a title and optional description.
+ * - On submission, adds the note and updates the notes state.
+ *
+ * @param variant - Button variant for the trigger button.
+ * @returns JSX.Element
+ */
 export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
+    // Get setNotes function from NoteContext to update notes list
     const setNotes = useNote().setNotesList;
+    // Local state for title and description inputs
     const [title, setTitle] = useState("Title");
     const [description, setDescription] = useState("");
     return (
         <Dialog>
+            {/* Button to open the dialog */}
             <DialogTrigger asChild>
                 <MotionButton
                     whileTap={{ scale: 0.8 }}
@@ -31,6 +44,7 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                     New Note
                 </MotionButton>
             </DialogTrigger>
+            {/* Dialog content for adding a note */}
             <DialogContent className="">
                 <DialogHeader>
                     <DialogTitle>Add Note</DialogTitle>
@@ -39,6 +53,7 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                     Add a new note with title and description.
                 </DialogDescription>
                 <div className="grid gap-4 py-4">
+                    {/* Title input row */}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="title" className="text-right">
                             Title
@@ -51,6 +66,7 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                             className="col-span-3"
                         />
                     </div>
+                    {/* Description input row */}
                     <div className="grid grid-cols-4 items-center gap-4">
                         <Label htmlFor="description" className="text-right">
                             Description
@@ -63,7 +79,9 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                             placeholder="Write more about it (optional)"
                         />
                     </div>
+                    {/* Action buttons row */}
                     <div className="flex justify-end gap-4">
+                        {/* Cancel button closes the dialog */}
                         <DialogClose asChild>
                             <MotionButton
                                 whileHover={{ scale: 1.05 }}
@@ -73,6 +91,7 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                                 Cancel
                             </MotionButton>
                         </DialogClose>
+                        {/* Add button triggers note creation and closes the dialog */}
                         <DialogClose asChild>
                             <MotionButton
                                 whileHover={{ scale: 1.1 }}
