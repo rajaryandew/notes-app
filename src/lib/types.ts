@@ -9,6 +9,7 @@ export type Note = {
     description?:string | null,
     username:string,
     isDeleted?: boolean
+    isPinned: boolean
 }
 
 export type NewNote = {
