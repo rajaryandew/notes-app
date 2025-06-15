@@ -19,6 +19,7 @@ model note {
   id          Int      @id @default(autoincrement())
   title       String   @db.VarChar(255)
   description String?
+  isPinned    Boolean  @default(false)
   username    String   @db.VarChar(255)
   profile     profile  @relation(fields: [username], references: [username], onDelete: Cascade, onUpdate: NoAction, map: "fk_user")
   isDeleted   Boolean  @default(false)
