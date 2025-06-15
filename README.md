@@ -18,22 +18,19 @@ A beautiful, modern note-taking app built with 🔥 **Next.js 14**, **Prisma**, 
 
 ## 📚 Introduction
 
-The **Notes App** is a full-stack, responsive note-taking application built with modern web technologies. It focuses on performance, developer experience, and clean architecture. You can create, read, update, and delete your notes in a minimal interface with full backend integration.
-
-Whether you're a student jotting down ideas or a developer organizing thoughts, this app gives you a clean space to think.
+The **Notes App** is a full-stack, modern note-taking application designed with simplicity and utility in mind. Whether you're jotting ideas or managing your day, it gives you a smooth and responsive interface backed by powerful backend tech.
 
 ---
 
 ## ✨ Key Features
 
-🔹 **Next.js 14 App Router** - Uses the latest server-side capabilities and layout patterns  
-🔹 **Prisma ORM** - Type-safe database management with support for PostgreSQL  
-🔹 **Tailwind CSS** - Utility-first CSS framework for fast UI development  
-🔹 **TypeScript** - Ensures a robust and type-safe codebase  
-🔹 **Hybrid Authentication** - Secure JWT cookie holds session ID, while Redis stores full session data  
-🔹 **Recycle Bin** - Soft-delete system to recover accidentally deleted notes  
-🔹 **Responsive UI** - Works flawlessly on mobile, tablet, and desktop  
-🔹 **Developer Tools** - ESLint + Prettier for clean and consistent code
+🔹 **Next.js 14 App Router** — Uses the latest layout and server capabilities  
+🔹 **Pin Notes** — Keep important notes at the top for quick access  
+🔹 **Recycle Bin** — Soft-delete system with 30-day auto-clean via Vercel Cron  
+🔹 **Hybrid Auth (JWT + Redis)** — Secure sessions using token-cookie and Redis  
+🔹 **Responsive UI** — Works great on all screen sizes  
+🔹 **Type-Safe Codebase** — Built with TypeScript and Prisma  
+🔹 **Clean Dev Setup** — ESLint + Prettier for consistent code style
 
 ---
 
@@ -43,9 +40,10 @@ Whether you're a student jotting down ideas or a developer organizing thoughts, 
 |-----------------|-------------------------------------------|
 | Frontend        | Next.js 14, TypeScript                    |
 | Styling         | Tailwind CSS                              |
-| Backend         | Next.js Server actions, Prisma            |
+| Backend         | Next.js Server Actions, Prisma            |
 | Database        | PostgreSQL                                |
 | Authentication  | JWT + Redis Sessions                      |
+| Cron Jobs       | Vercel Scheduled Functions                |
 | Dev Tools       | ESLint, Prettier                          |
 | Deployment      | Vercel                                    |
 
@@ -55,9 +53,9 @@ Whether you're a student jotting down ideas or a developer organizing thoughts, 
 
 ### ✅ Prerequisites
 
-- **Node.js** (version 18 or above)
-- A **PostgreSQL** database (local or cloud)
-- Your choice of **npm**, **yarn**, **pnpm**, or **bun**
+- **Node.js** (v18 or above)
+- **PostgreSQL** database
+- Optional: **Redis** for auth sessions
 
 ### 📦 Installation
 
@@ -73,7 +71,7 @@ npm install   # or yarn / pnpm / bun
 
 ## 🔐 Environment Variables
 
-Set up a `.env` file in the root directory:
+Create a `.env` file in the root directory:
 
 ```env
 DATABASE_URL="postgresql://<username>:<password>@<host>:<port>/<database>?schema=public"
@@ -85,13 +83,11 @@ REDIS_URL="your-redis-connection-url"
 REDIS_TOKEN="your-redis-access-token"
 ```
 
-> 💡 `JWT_SECRET` is still used to sign the cookie, but the actual user session is stored in Redis and referenced via a `sessionID` in the token.
+> 💡 `JWT_SECRET` signs a secure cookie with a session ID. The actual session data lives in Redis.
 
 ---
 
 ## 🧬 Prisma Setup
-
-Generate the client and run migrations:
 
 ```bash
 npx prisma generate
@@ -106,7 +102,7 @@ npx prisma migrate dev
 npm run dev   # or yarn dev / pnpm dev / bun dev
 ```
 
-Visit **[http://localhost:3000](http://localhost:3000)** to see it in action 🚀
+Visit **[http://localhost:3000](http://localhost:3000)** to get started 🚀
 
 ---
 
@@ -131,24 +127,26 @@ notes-app/
 
 ## 🧠 How It Works
 
-- User hits the frontend — a clean UI built with Tailwind + Next.js layouts  
-- Next.js App Router handles pages and server-side logic seamlessly  
-- Server actions connect to a PostgreSQL database using Prisma  
-- Auth is hybrid-based: a JWT cookie stores a signed `sessionID`, which is used to look up the full session data in Redis  
-- Notes are created, edited, or deleted from the PostgreSQL DB with real-time feedback
+- Frontend is built with the App Router and modern layout patterns  
+- Notes are managed using Prisma with PostgreSQL  
+- Pinned notes stay at the top  
+- Deleted notes go into a recycle bin, auto-cleared after 30 days  
+- Auth uses a signed JWT cookie storing a `sessionID` linked to Redis session data  
+- Dev workflow is optimized with linting, formatting, and clean structure
 
 ---
 
 ## 🪪 License
 
-This project is licensed under the **[MIT License](./LICENSE)** — meaning you can use, copy, modify, distribute, or sell it. Just keep the original credits.  
+MIT License — feel free to use, fork, or remix. Just keep the credits intact.  
+[View License →](./LICENSE)
 
 ---
 
 ## 💬 About Me
 
-> I'm **[Aryan](https://github.com/rajaryandew)** – a 14 y/o dev who loves building full-stack stuff and learning cool tech.  
-> If this helped you or inspired you, drop a ⭐, fork it, or just say hi 😄
+> I'm **[Aryan](https://github.com/rajaryandew)** — a 14 y/o full-stack dev who loves building cool stuff and shipping features daily 🚀  
+> If you dig this project, leave a ⭐ or fork it. Would mean a lot ✌️
 
 ---
 
