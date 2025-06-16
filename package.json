@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "npx prisma generate"
+    "postinstall": "npx prisma migrate deploy"
   },
   "dependencies": {
     "@prisma/client": "^6.8.2",
