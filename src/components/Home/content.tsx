@@ -31,7 +31,11 @@ export default function Content() {
         // Fetch active notes on mount
         getActiveNotes()
             .then((notes) => {
-                setNotesList(notes?.reverse() ?? []);
+                setNotesList(
+                    (notes ?? [])
+                        .reverse()
+                        .sort((a, b) => Number(b.isPinned) - Number(a.isPinned))
+                );
             })
             .catch((res) => {
                 // Show error toast if fetch fails
