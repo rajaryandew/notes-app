@@ -10,18 +10,29 @@ datasource db {
 
 model profile {
   id       Int    @id @default(autoincrement())
-  username String @unique(map: "unique_username") @db.VarChar(255)
+  username String @unique @db.VarChar(255)
   password String
   note     note[]
+  tag      tag[]
 }
 
 model note {
-  id          Int      @id @default(autoincrement())
-  title       String   @db.VarChar(255)
+  id          Int       @id @default(autoincrement())
+  title       String    @db.VarChar(255)
   description String?
-  isPinned    Boolean  @default(false)
-  username    String   @db.VarChar(255)
-  profile     profile  @relation(fields: [username], references: [username], onDelete: Cascade, onUpdate: NoAction, map: "fk_user")
-  isDeleted   Boolean  @default(false)
+  isPinned    Boolean   @default(false)
+  username    String    @db.VarChar(255)
+  profile     profile   @relation(fields: [username], references: [username], onDelete: Cascade, onUpdate: NoAction)
+  isDeleted   Boolean   @default(false)
   expiresAt   DateTime?
+  tagId       Int?
+  tag         tag?      @relation(fields: [tagId], references: [id])
+}
+
+model tag {
+  id      Int      @id @default(autoincrement())
+  name    String
+  user    String?
+  profile profile? @relation(fields: [user], references: [username], onDelete: Cascade, onUpdate: NoAction)
+  note    note[]
 }

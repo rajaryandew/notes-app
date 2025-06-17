@@ -27,3 +27,14 @@ export type ButtonVariant =
         | null
         | undefined;
 ;
+
+export type Tag = {
+    id: number,
+    name: string,
+    user?:string | null
+}
+
+export type NewTag = {
+    name:string,
+    user?:string | null
+}
