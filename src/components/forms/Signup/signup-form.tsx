@@ -37,7 +37,10 @@ export function SignupForm({
                                   required
                               />
                           </div>
-                          <PasswordInput/>
+                          <div className="grid gap-3">
+                              <Label htmlFor="password">Password</Label>
+                              <PasswordInput />
+                          </div>
                           <div className="flex flex-col gap-3">
                               <Button type="submit" className="w-full">
                                   Sign up
