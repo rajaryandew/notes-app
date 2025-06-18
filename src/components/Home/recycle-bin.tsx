@@ -37,8 +37,6 @@ export default function RecycleBin() {
             .then((deletedNotes) => {
                 setDeletedNotes(deletedNotes?.reverse() || []);
             })
-            .catch((err) => {
-            });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (

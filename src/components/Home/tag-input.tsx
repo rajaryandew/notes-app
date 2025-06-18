@@ -5,7 +5,6 @@ import {
     CommandEmpty,
     CommandGroup,
     CommandInput,
-    CommandItem,
     CommandList,
 } from "@/components/ui/command";
 import {
@@ -14,7 +13,7 @@ import {
     PopoverTrigger,
 } from "@/components/ui/popover";
 import { useTags } from "@/context/TagsContext";
-import { CheckIcon, ChevronsUpDown, Plus } from "lucide-react";
+import { ChevronsUpDown} from "lucide-react";
 import { useState } from "react";
 import AddTag from "./add-tag";
 import TagItem from "./tag";

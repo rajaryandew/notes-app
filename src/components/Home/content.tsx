@@ -8,8 +8,7 @@ import { getActiveNotes } from "@/lib/server-actions/note";
 import { toast } from "sonner";
 import { useNote } from "@/context/NoteContext";
 import Loading from "./loading";
-import { TagProvider, useTags } from "@/context/TagsContext";
-import { getTagsClient } from "@/lib/tag-client";
+import { useTags } from "@/context/TagsContext";
 import { getTags } from "@/lib/server-actions/tags";
 
 /**

@@ -44,7 +44,7 @@ export default function AddTag() {
                 />
                 <div className="grid grid-cols-3">
                     <DialogClose asChild>
-                        <Button variant="outline" onClick={() => addTagClient(value,setTags)}>Add tag</Button>
+                        <Button variant="outline" onClick={() => addTagClient(value,setTags,resetInput)}>Add tag</Button>
                     </DialogClose>
                     <DialogClose asChild>
                         <Button className="col-start-3" variant="secondary">
