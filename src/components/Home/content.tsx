@@ -4,12 +4,9 @@ import { Input } from "../ui/input";
 import Notes from "./notes";
 import { useEffect, useState } from "react";
 import AddNote from "./add-note";
-import { getActiveNotes } from "@/lib/server-actions/note";
-import { toast } from "sonner";
 import { useNote } from "@/context/NoteContext";
 import Loading from "./loading";
 import { useTags } from "@/context/TagsContext";
-import { getTags } from "@/lib/server-actions/tags";
 import { getActiveNotesClient } from "@/lib/note-client";
 import { getTagsClient } from "@/lib/tag-client";
 
