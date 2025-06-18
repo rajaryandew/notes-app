@@ -28,9 +28,10 @@ export async function addNote(
     description: string,
     setTitle: Dispatch<SetStateAction<string>>,
     setDescription: Dispatch<SetStateAction<string>>,
-    setNotes: Dispatch<SetStateAction<Note[]>>
+    setNotes: Dispatch<SetStateAction<Note[]>>,
+    tagId?:number
 ) {
-    const note: NewNote = { title, description };
+    const note: NewNote = { title, description, tagId};
     if (title) {
         try {
             await createNote(note).then((notes) => {

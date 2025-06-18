@@ -43,6 +43,7 @@ export async function createNoteRecord(username: string, note: NewNote) {
             title: note.title,
             description: note.description,
             username,
+            tagId:note.tagId
         },
     });
 }
@@ -91,7 +92,8 @@ export async function updateNoteRecord(note: Note, updatedNote: NewNote) {
         },
         data:{
             title:updatedNote.title,
-            description:updatedNote.description
+            description:updatedNote.description,
+            tagId:updatedNote.tagId
         }
     });
 }

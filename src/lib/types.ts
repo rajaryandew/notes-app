@@ -9,13 +9,15 @@ export type Note = {
     description?:string | null,
     username:string,
     isDeleted?: boolean
-    isPinned: boolean
+    isPinned: boolean,
+    tagId?: number | null
 }
 
 export type NewNote = {
-    title:string,
-    description?:string|null
-}
+    title: string;
+    description?: string | null;
+    tagId?: number | null;
+};
 
 export type ButtonVariant = 
         | "link"
@@ -36,5 +38,5 @@ export type Tag = {
 
 export type NewTag = {
     name:string,
-    user?:string | null
+    user?:string | null,
 }

@@ -33,6 +33,7 @@ export function AddNoteDrawer({ variant }: { variant: ButtonVariant }) {
     // Local state for title and description inputs
     const [title, setTitle] = useState("Title");
     const [description, setDescription] = useState("");
+    const [tag,setTag] = useState<number>()
     return (
         <Drawer>
             {/* Button to open the drawer */}
@@ -65,7 +66,7 @@ export function AddNoteDrawer({ variant }: { variant: ButtonVariant }) {
                         <Label htmlFor="tag">
                             Tag
                         </Label>
-                        <TagInput />
+                        <TagInput setTag={setTag}/>
                     </div>
                     {/* Description input row */}
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -93,7 +94,8 @@ export function AddNoteDrawer({ variant }: { variant: ButtonVariant }) {
                                         description,
                                         setTitle,
                                         setDescription,
-                                        setNotes
+                                        setNotes,
+                                        tag
                                     )
                                 }
                             >

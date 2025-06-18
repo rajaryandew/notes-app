@@ -14,7 +14,7 @@ export default function TagItem({
     return (
         <CommandItem
             key={tag.id}
-            value={tag.name}
+            value={String(tag.id)}
             onSelect={(val) => onSelect(val)}
         >
             <CheckIcon className={checked ? "opacity-100" : "opacity-0"} />

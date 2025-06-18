@@ -33,6 +33,7 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
     // Local state for title and description inputs
     const [title, setTitle] = useState("Title");
     const [description, setDescription] = useState("");
+    const [tag, setTag] = useState<number>();
     return (
         <Dialog>
             {/* Button to open the dialog */}
@@ -71,7 +72,7 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                         <Label htmlFor="tag" className="text-right">
                             Tag
                         </Label>
-                        <TagInput/>
+                        <TagInput setTag={setTag} />
                     </div>
                     {/* Description input row */}
                     <div className="grid grid-cols-4 items-center gap-4">
@@ -103,15 +104,16 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                             <MotionButton
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
-                                onClick={() =>
+                                onClick={() => {
                                     addNote(
                                         title,
                                         description,
                                         setTitle,
                                         setDescription,
-                                        setNotes
-                                    )
-                                }
+                                        setNotes,
+                                        tag
+                                    );
+                                }}
                             >
                                 Add
                             </MotionButton>
