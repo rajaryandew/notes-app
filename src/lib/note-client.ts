@@ -13,6 +13,7 @@ import { toast } from "sonner";
 import { handlePrismaError } from "./handle-error";
 import { Dispatch, SetStateAction } from "react";
 import { pinNote, unpinNote } from "./server-actions/note";
+import { refreshNotes } from "@/utils/refresh";
 
 // setNotes from note context
 
@@ -29,24 +30,17 @@ export async function addNote(
     setTitle: Dispatch<SetStateAction<string>>,
     setDescription: Dispatch<SetStateAction<string>>,
     setNotes: Dispatch<SetStateAction<Note[]>>,
-    tagId?:number
+    tagId?: number
 ) {
-    const note: NewNote = { title, description, tagId};
+    const note: NewNote = { title, description, tagId };
     if (title) {
         try {
-            await createNote(note).then((notes) => {
-                setNotes(
-                    notes
-                        ?.reverse()
-                        .sort(
-                            (a, b) => Number(b.isPinned) - Number(a.isPinned)
-                        ) ?? []
-                );
-                setTitle("Title");
-                setDescription("");
-                toast("Note added successfully 📝", {
-                    description: "Keep those thoughts flowing!",
-                });
+            await createNote(note);
+            await refreshNotes(setNotes)
+            setTitle("Title");
+            setDescription("");
+            toast("Note added successfully 📝", {
+                description: "Keep those thoughts flowing!",
             });
         } catch (err) {
             handlePrismaError(err);
@@ -110,16 +104,10 @@ export async function editNote(
     setNotes: Dispatch<SetStateAction<Note[]>>
 ) {
     try {
-        updateNote(note, updatedNote).then((notes) => {
-            setNotes(
-                notes
-                    ?.reverse()
-                    .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ??
-                    []
-            );
-            toast("Note updated ✅", {
-                description: "Changes saved like a boss 💾",
-            });
+        await updateNote(note, updatedNote);
+        await refreshNotes(setNotes);
+        toast("Note updated ✅", {
+            description: "Changes saved like a boss 💾",
         });
     } catch (err) {
         handlePrismaError(err);
@@ -134,13 +122,7 @@ export async function restoreNote(
     try {
         undeleteNote(note).then(async (res) => {
             const deletedNotes = res?.deletedNotes;
-            const activeNotes = await getActiveNotes();
-            setNotes(
-                activeNotes
-                    ?.reverse()
-                    .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ??
-                    []
-            );
+            await refreshNotes(setNotes);
             setDeletedNotes(deletedNotes?.reverse() ?? []);
             toast("Note restored ✅", {
                 description: "This note is restored from the recycle bin ✅",
@@ -157,12 +139,7 @@ export async function restoreAll(
 ) {
     try {
         await restoreAllNotes();
-        const notes = await getActiveNotes();
-        setNotes(
-            notes
-                ?.reverse()
-                .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ?? []
-        );
+        await refreshNotes(setNotes);
         setDeletedNotes([]);
     } catch (err) {
         handlePrismaError(err);
@@ -175,12 +152,7 @@ export async function deleteAll(
 ) {
     try {
         await deleteAllNotes();
-        const notes = await getActiveNotes();
-        setNotes(
-            notes
-                ?.reverse()
-                .sort((a, b) => Number(b.isPinned) - Number(a.isPinned)) ?? []
-        );
+        await refreshNotes(setNotes);
         setDeletedNotes([]);
     } catch (err) {
         handlePrismaError(err);
@@ -219,4 +191,23 @@ export async function toggleNotePin(
     } catch (err) {
         handlePrismaError(err);
     }
+}
+
+export async function getActiveNotesClient(
+    setNotesList: Dispatch<SetStateAction<Note[]>>,
+    setLoading: Dispatch<SetStateAction<boolean>>
+) {
+    getActiveNotes()
+        .then(() => {
+            refreshNotes(setNotesList)
+        })
+        .catch((res) => {
+            // Show error toast if fetch fails
+            toast.error("Something unexpected happened!!", {
+                description: res.message,
+            });
+        })
+        .finally(() => {
+            setLoading(false);
+        });
 }

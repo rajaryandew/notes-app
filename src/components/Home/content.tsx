@@ -10,6 +10,8 @@ import { useNote } from "@/context/NoteContext";
 import Loading from "./loading";
 import { useTags } from "@/context/TagsContext";
 import { getTags } from "@/lib/server-actions/tags";
+import { getActiveNotesClient } from "@/lib/note-client";
+import { getTagsClient } from "@/lib/tag-client";
 
 /**
  * Content component
@@ -32,26 +34,8 @@ export default function Content() {
 
     useEffect(() => {
         // Fetch active notes on mount
-        getActiveNotes()
-            .then((notes) => {
-                setNotesList(
-                    (notes ?? [])
-                        .reverse()
-                        .sort((a, b) => Number(b.isPinned) - Number(a.isPinned))
-                );
-            })
-            .catch((res) => {
-                // Show error toast if fetch fails
-                toast.error("Something unexpected happened!!", {
-                    description: res.message,
-                });
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-        getTags().then((tags) => {
-            setTags(tags ?? [])
-        })
+        getActiveNotesClient(setNotesList,setLoading)
+        getTagsClient(setTags)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

@@ -7,12 +7,7 @@ export async function getTags() {
     const username = await getCookie()
     try {
         const tags: Tag[] = await getTagRecords(username ?? "") || [];
-        const sorted = tags.sort((a, b) => {
-            if (!a.user) return -1;
-            if (!b.user) return 1;
-            return 0
-        });
-        return sorted
+        return tags
     } catch (err) {
         if (err instanceof Error) {
             throw new Error(err.message);

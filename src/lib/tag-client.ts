@@ -1,13 +1,13 @@
 import { Tag, NewTag } from "./types";
 import {
-    getTags,
     createTag,
     updateTag,
     deleteTag,
 } from "./server-actions/tags";
 import { toast } from "sonner";
 import { handlePrismaError } from "./handle-error";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";;
+import { refreshTags } from "@/utils/refresh";
 
 /**
  * Fetch all tags for a user and update state.
@@ -16,8 +16,7 @@ export async function getTagsClient(
     setTags: Dispatch<SetStateAction<Tag[]>>
 ) {
     try {
-        const tags = await getTags();
-        setTags(tags ?? []);
+        await refreshTags(setTags)
     } catch (err) {
         handlePrismaError(err);
     }
@@ -33,8 +32,7 @@ export async function addTagClient(
 ) {
     try {
         await createTag(tag);
-        const tags = await getTags();
-        setTags(tags ?? []);
+        await refreshTags(setTags);
         if (resetInputs) resetInputs();
         toast("Tag added successfully 🏷️");
     } catch (err) {
@@ -52,8 +50,7 @@ export async function editTagClient(
 ) {
     try {
         await updateTag(tag, updatedTag);
-        const tags = await getTags();
-        setTags(tags ?? []);
+        await refreshTags(setTags);
         toast("Tag updated ✅");
     } catch (err) {
         handlePrismaError(err);
@@ -69,8 +66,7 @@ export async function removeTagClient(
 ) {
     try {
         await deleteTag(tag);
-        const tags = await getTags();
-        setTags(tags ?? []);
+        await refreshTags(setTags)
         toast("Tag deleted 🗑️");
     } catch (err) {
         handlePrismaError(err);
