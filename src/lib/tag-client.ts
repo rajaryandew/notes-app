@@ -13,11 +13,10 @@ import { Dispatch, SetStateAction } from "react";
  * Fetch all tags for a user and update state.
  */
 export async function getTagsClient(
-    username: string,
     setTags: Dispatch<SetStateAction<Tag[]>>
 ) {
     try {
-        const tags = await getTags(username);
+        const tags = await getTags();
         setTags(tags ?? []);
     } catch (err) {
         handlePrismaError(err);
@@ -27,15 +26,14 @@ export async function getTagsClient(
 /**
  * Add a new tag and update state.
  */
-export async function addTag(
-    newTag: NewTag,
-    username: string,
+export async function addTagClient(
+    tag: string,
     setTags: Dispatch<SetStateAction<Tag[]>>,
     resetInputs?: () => void
 ) {
     try {
-        await createTag(newTag);
-        const tags = await getTags(username);
+        await createTag(tag);
+        const tags = await getTags();
         setTags(tags ?? []);
         if (resetInputs) resetInputs();
         toast("Tag added successfully 🏷️");
@@ -47,15 +45,14 @@ export async function addTag(
 /**
  * Update an existing tag and update state.
  */
-export async function editTag(
+export async function editTagClient(
     tag: Tag,
     updatedTag: NewTag,
-    username: string,
     setTags: Dispatch<SetStateAction<Tag[]>>
 ) {
     try {
         await updateTag(tag, updatedTag);
-        const tags = await getTags(username);
+        const tags = await getTags();
         setTags(tags ?? []);
         toast("Tag updated ✅");
     } catch (err) {
@@ -66,14 +63,13 @@ export async function editTag(
 /**
  * Delete a tag and update state.
  */
-export async function removeTag(
+export async function removeTagClient(
     tag: Tag,
-    username: string,
     setTags: Dispatch<SetStateAction<Tag[]>>
 ) {
     try {
         await deleteTag(tag);
-        const tags = await getTags(username);
+        const tags = await getTags();
         setTags(tags ?? []);
         toast("Tag deleted 🗑️");
     } catch (err) {

@@ -15,6 +15,7 @@ import { Textarea } from "../ui/textarea";
 import { useNote } from "@/context/NoteContext";
 import { useState } from "react";
 import { addNote } from "@/lib/note-client";
+import TagInput from "./tag-input";
 
 /**
  * AddNoteDialog component
@@ -65,6 +66,12 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                             value={title}
                             className="col-span-3"
                         />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="tag" className="text-right">
+                            Tag
+                        </Label>
+                        <TagInput/>
                     </div>
                     {/* Description input row */}
                     <div className="grid grid-cols-4 items-center gap-4">

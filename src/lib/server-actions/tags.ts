@@ -1,14 +1,19 @@
-import { createTagRecord, getTagRecords, updateTagRecord } from "../db/tags";
+"use server"
+import { createTagRecord, deleteTagRecord, getTagRecords, updateTagRecord } from "../db/tags";
+import { getCookie } from "../get-cookie";
 import { NewTag, Tag } from "../types";
 
-export async function getTags(username: string) {
+export async function getTags() {
+    const username = await getCookie()
     try {
-        const tags: Tag[] = await getTagRecords(username);
-        return tags.sort((a, b) => {
+        console.log(username)
+        const tags: Tag[] = await getTagRecords(username ?? "") || [];
+        const sorted = tags.sort((a, b) => {
             if (!a.user) return -1;
             if (!b.user) return 1;
-            return 0;
+            return 0
         });
+        return sorted
     } catch (err) {
         if (err instanceof Error) {
             throw new Error(err.message);
@@ -16,9 +21,10 @@ export async function getTags(username: string) {
     }
 }
 
-export async function createTag(newTag: NewTag) {
+export async function createTag(tagName: string) {
+    const username = await getCookie()
     try {
-        await createTagRecord(newTag);
+        await createTagRecord({name:tagName,user:username});
     } catch (err) {
         if (err instanceof Error) {
             throw new Error(err.message);
@@ -38,7 +44,7 @@ export async function updateTag(tag: Tag, updatedTag: NewTag) {
 
 export async function deleteTag(tag: Tag) {
     try {
-        await deleteTag(tag);
+        await deleteTagRecord(tag);
     } catch (err) {
         if (err instanceof Error) {
             throw new Error(err.message);

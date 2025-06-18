@@ -10,6 +10,7 @@ import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import ProfilePicture from "@/components/Home/profile-picture";
 import Content from "@/components/Home/content";
 import { NoteProvider } from "@/context/NoteContext";
+import { TagProvider } from "@/context/TagsContext";
 
 export default function Home() {
     return (
@@ -21,7 +22,10 @@ export default function Home() {
                     </CardTitle>
                     <ProfilePicture src="https://i.pinimg.com/736x/29/18/1e/29181e64d66002fba0566b6f2f48d28d.jpg" />
                 </CardHeader>
+            <TagProvider>
                 <Content />
+            </TagProvider>
+
             </NoteProvider>
         </Card>
     );

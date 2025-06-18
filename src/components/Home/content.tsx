@@ -8,6 +8,9 @@ import { getActiveNotes } from "@/lib/server-actions/note";
 import { toast } from "sonner";
 import { useNote } from "@/context/NoteContext";
 import Loading from "./loading";
+import { TagProvider, useTags } from "@/context/TagsContext";
+import { getTagsClient } from "@/lib/tag-client";
+import { getTags } from "@/lib/server-actions/tags";
 
 /**
  * Content component
@@ -24,6 +27,7 @@ export default function Content() {
     const [searchValue, setSearchValue] = useState("");
     // Get setNotesList from context to update notes globally
     const { setNotesList } = useNote();
+    const {setTags,tags} = useTags()
     // Loading state for notes fetch
     const [loading, setLoading] = useState(true);
 
@@ -46,25 +50,37 @@ export default function Content() {
             .finally(() => {
                 setLoading(false);
             });
+        getTags().then((tags) => {
+            console.log(tags)
+            setTags(tags ?? [])
+        })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        console.log(tags)
+    },[tags])
 
     return (
         <CardContent className="px-4 flex flex-col overflow-auto ">
             {/* Header row: Add Note button and search input */}
-            <div className="flex justify-between items-center w-full mb-3">
-                <AddNote variant={"default"} />
-                <Input
-                    className="grow-0 basis-40 md:basis-80"
-                    onChange={(e) => setSearchValue(e.target.value.trim())}
-                    type="text"
-                    placeholder="Search notes..."
-                />
-            </div>
-            {/* Notes list or loading spinner */}
-            <section className="flex-1 overflow-y-auto ">
-                {loading === true ? <Loading /> : <Notes searchValue={searchValue} />}
-            </section>
+                <div className="flex justify-between items-center w-full mb-3">
+                    <AddNote variant={"default"} />
+                    <Input
+                        className="grow-0 basis-40 md:basis-80"
+                        onChange={(e) => setSearchValue(e.target.value.trim())}
+                        type="text"
+                        placeholder="Search notes..."
+                    />
+                </div>
+                {/* Notes list or loading spinner */}
+                <section className="flex-1 overflow-y-auto ">
+                    {loading === true ? (
+                        <Loading />
+                    ) : (
+                        <Notes searchValue={searchValue} />
+                    )}
+                </section>
         </CardContent>
     );
 }
