@@ -6,7 +6,6 @@ import { NewTag, Tag } from "../types";
 export async function getTags() {
     const username = await getCookie()
     try {
-        console.log(username)
         const tags: Tag[] = await getTagRecords(username ?? "") || [];
         const sorted = tags.sort((a, b) => {
             if (!a.user) return -1;

@@ -15,14 +15,15 @@ import { Textarea } from "../ui/textarea";
 import { useNote } from "@/context/NoteContext";
 import { useState } from "react";
 import { addNote } from "@/lib/note-client";
+import TagInput from "./tag-input";
 
- /**
+/**
  * AddNoteDrawer component
- * 
+ *
  * Renders a drawer UI for creating a new note.
  * - Allows user to input a title and optional description.
  * - On submission, adds the note and updates the notes state.
- * 
+ *
  * @param variant - Button variant for the trigger button.
  * @returns JSX.Element
  */
@@ -36,11 +37,7 @@ export function AddNoteDrawer({ variant }: { variant: ButtonVariant }) {
         <Drawer>
             {/* Button to open the drawer */}
             <DrawerTrigger asChild>
-                <MotionButton
-                    variant={variant}
-                >
-                    New Note
-                </MotionButton>
+                <MotionButton variant={variant}>New Note</MotionButton>
             </DrawerTrigger>
             {/* Drawer content for adding a note */}
             <DrawerContent className="px-4">
@@ -63,6 +60,12 @@ export function AddNoteDrawer({ variant }: { variant: ButtonVariant }) {
                             value={title}
                             className="col-span-3"
                         />
+                    </div>
+                    <div className="grid grid-cols-4 items-center gap-4">
+                        <Label htmlFor="tag">
+                            Tag
+                        </Label>
+                        <TagInput />
                     </div>
                     {/* Description input row */}
                     <div className="grid grid-cols-4 items-center gap-4">

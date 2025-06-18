@@ -51,14 +51,12 @@ export default function Content() {
                 setLoading(false);
             });
         getTags().then((tags) => {
-            console.log(tags)
             setTags(tags ?? [])
         })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     useEffect(() => {
-        console.log(tags)
     },[tags])
 
     return (
