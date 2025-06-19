@@ -18,10 +18,8 @@ import UpdateNoteDrawer from "./update-note-drawer";
  */
 export default function EditNote({
     note,
-    setNotes,
 }: {
     note: Note;
-    setNotes: Dispatch<SetStateAction<Note[]>>;
 }) {
     return(
         <>
