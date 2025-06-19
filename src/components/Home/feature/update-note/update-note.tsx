@@ -27,11 +27,11 @@ export default function EditNote({
         <>
             {/* Dialog for desktop (md and up) */}
             <div className="hidden md:block">
-                <UpdateNoteDialog note={note} setNotes={setNotes}/>
+                <UpdateNoteDialog note={note}/>
             </div>
             {/* Drawer for mobile (below md) */}
             <div className="block md:hidden">
-                <UpdateNoteDrawer note={note} setNotes={setNotes}/>
+                <UpdateNoteDrawer note={note} />
             </div>
         </>
     )
