@@ -54,7 +54,7 @@ export default function Note({ note, index }: { note: Note; index: number }) {
             <CardFooter className="flex gap-4 justify-between items-center">
                 <Badge variant="secondary" className={tag ? "opacity-100" : "opacity-0"}>{tag}</Badge>
                 <div className="flex gap-4 items-center">
-                    <EditNote setNotes={setNotes} note={note} />
+                    <EditNote note={note} />
                     <Delete onDelete={() => tempDeleteNote(note, setNotes)} />
                 </div>
             </CardFooter>
