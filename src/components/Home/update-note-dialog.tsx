@@ -14,6 +14,7 @@ import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
 import { Dispatch, SetStateAction, useState } from "react";
 import { editNote } from "@/lib/note-client";
+import UpdateNoteForm from "./update-note-form";
 
 /**
  * UpdateNoteDialog component
@@ -51,56 +52,7 @@ export default function UpdateNoteDialog({
                     </DialogDescription>
                 </DialogHeader>
                 {/* Form for editing note */}
-                <form className="grid gap-4 py-4">
-                    {/* Title input row */}
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="title" className="text-right">
-                            Title
-                        </Label>
-                        <Input
-                            className="col-span-3"
-                            type="text"
-                            id="title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
-                            placeholder={note.title}
-                        />
-                    </div>
-                    {/* Description input row */}
-                    <div className="grid grid-cols-4 items-center gap-4">
-                        <Label htmlFor="description" className="text-right">
-                            Description
-                        </Label>
-                        <Textarea
-                            id="description"
-                            onChange={(e) => setDescription(e.target.value)}
-                            value={description}
-                            className="col-span-3"
-                            placeholder={note.description || ""}
-                        />
-                    </div>
-                    {/* Action buttons row */}
-                    <div className="flex justify-end gap-4">
-                        {/* Cancel button */}
-                        <DialogClose asChild>
-                            <Button variant="secondary">Cancel</Button>
-                        </DialogClose>
-                        {/* Save button triggers note update */}
-                        <DialogClose asChild>
-                            <Button
-                                onClick={() =>
-                                    editNote(
-                                        note,
-                                        { title, description },
-                                        setNotes
-                                    )
-                                }
-                            >
-                                Save
-                            </Button>
-                        </DialogClose>
-                    </div>
-                </form>
+                <UpdateNoteForm type="dialog" note={note}/>
             </DialogContent>
         </Dialog>
     );

@@ -20,12 +20,14 @@ import TagItem from "./tag";
 
 export default function TagInput({
     setTag,
+    tagId
 }: {
-    setTag: Dispatch<SetStateAction<number | undefined>>;
+    setTag: Dispatch<SetStateAction<number | null | undefined>>;
+    tagId?: number | null | undefined
 }) {
     const { tags } = useTags();
     const [open, setOpen] = useState(false);
-    const [searchValue, setSearchValue] = useState("");
+    const [searchValue, setSearchValue] = useState(String(tagId));
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -62,7 +64,7 @@ export default function TagInput({
                                     key={tag.id}
                                 />
                             ))}
-                            <AddTag></AddTag>
+                            <AddTag/>
                         </CommandGroup>
                     </CommandList>
                 </Command>
