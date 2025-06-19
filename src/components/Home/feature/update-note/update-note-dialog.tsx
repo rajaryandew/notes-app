@@ -2,18 +2,12 @@ import { Note } from "@/lib/types";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,
-    DialogClose,
     DialogContent,
     DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui//dialog";
-import { Input } from "@/components/ui//input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Dispatch, SetStateAction, useState } from "react";
-import { editNote } from "@/lib/note-client";
 import UpdateNoteForm from "./update-note-form";
 
 /**
@@ -29,14 +23,9 @@ import UpdateNoteForm from "./update-note-form";
  */
 export default function UpdateNoteDialog({
     note,
-    setNotes,
 }: {
     note: Note;
-    setNotes: Dispatch<SetStateAction<Note[]>>;
 }) {
-    // Local state for title and description inputs
-    const [title, setTitle] = useState(note.title);
-    const [description, setDescription] = useState(note.description ?? "");
 
     return (
         <Dialog>

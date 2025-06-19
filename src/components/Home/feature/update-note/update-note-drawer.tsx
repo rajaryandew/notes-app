@@ -1,19 +1,13 @@
 import { Note } from "@/lib/types";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui//button";
 import {
     Drawer,
-    DrawerClose,
     DrawerContent,
     DrawerDescription,
     DrawerHeader,
     DrawerTitle,
     DrawerTrigger,
-} from "../ui/drawer";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
-import { Dispatch, SetStateAction, useState } from "react";
-import { editNote } from "@/lib/note-client";
+} from "@/components/ui//drawer";
 import UpdateNoteForm from "./update-note-form";
 
 /**
@@ -29,14 +23,9 @@ import UpdateNoteForm from "./update-note-form";
  */
 export default function UpdateNoteDrawer({
     note,
-    setNotes,
 }: {
     note: Note;
-    setNotes: Dispatch<SetStateAction<Note[]>>;
 }) {
-    // Local state for title and description inputs
-    const [title, setTitle] = useState(note.title);
-    const [description, setDescription] = useState(note.description ?? "");
 
     return (
         <Drawer>
