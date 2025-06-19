@@ -1,7 +1,6 @@
 "use client";
 
 import { Note } from "@/lib/types";
-import { Dispatch, SetStateAction} from "react";
 import UpdateNoteDialog from "./update-note-dialog";
 import UpdateNoteDrawer from "./update-note-drawer";
 
