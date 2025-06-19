@@ -26,6 +26,7 @@ The **Notes App** is a full-stack, modern note-taking application designed with 
 
 🔹 **Next.js 14 App Router** — Uses the latest layout and server capabilities  
 🔹 **Pin Notes** — Keep important notes at the top for quick access  
+🔹 **Tags for Notes** — Categorize and filter your notes effortlessly  
 🔹 **Recycle Bin** — Soft-delete system with 30-day auto-clean via Vercel Cron  
 🔹 **Hybrid Auth (JWT + Redis)** — Secure sessions using token-cookie and Redis  
 🔹 **Responsive UI** — Works great on all screen sizes  
@@ -130,6 +131,7 @@ notes-app/
 - Frontend is built with the App Router and modern layout patterns  
 - Notes are managed using Prisma with PostgreSQL  
 - Pinned notes stay at the top  
+- Tags help organize your notes and improve filtering  
 - Deleted notes go into a recycle bin, auto-cleared after 30 days  
 - Auth uses a signed JWT cookie storing a `sessionID` linked to Redis session data  
 - Dev workflow is optimized with linting, formatting, and clean structure
@@ -149,4 +151,3 @@ MIT License — feel free to use, fork, or remix. Just keep the credits intact.
 > If you dig this project, leave a ⭐ or fork it. Would mean a lot ✌️
 
 ---
-
