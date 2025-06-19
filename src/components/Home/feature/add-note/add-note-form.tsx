@@ -35,7 +35,7 @@ export default function AddNoteForm({ type }: { type: "drawer" | "dialog" }) {
                 <Label htmlFor="tag" className={textAlign}>
                     Tag
                 </Label>
-                <TagInput setTag={setTag} />
+                <TagInput setTag={setTag} tagId={tag}/>
             </div>
             {/* Description input row */}
             <div className="grid grid-cols-4 items-center gap-4">

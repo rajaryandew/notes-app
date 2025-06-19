@@ -49,7 +49,7 @@ export default function UpdateNoteForm({
                 <TagInput setTag={setTagId} tagId={tagId} />
             </div>
             {/* Description input row */}
-            <div className={footStyle}>
+            <div className="grid grid-cols-4 items-center gap-4">
                 <Label htmlFor="description" className={textAlign}>
                     Description
                 </Label>
@@ -62,7 +62,7 @@ export default function UpdateNoteForm({
                 />
             </div>
             {/* Action buttons row */}
-            <div className="flex justify-end gap-4">
+            <div className={footStyle}>
                 {/* Cancel button */}
                 <DialogClose asChild>
                     <Button variant="secondary">Cancel</Button>

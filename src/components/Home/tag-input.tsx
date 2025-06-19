@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/popover";
 import { useTags } from "@/context/TagsContext";
 import { ChevronsUpDown } from "lucide-react";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import AddTag from "./add-tag";
 import TagItem from "./tag";
 
@@ -28,13 +28,18 @@ export default function TagInput({
     const { tags } = useTags();
     const [open, setOpen] = useState(false);
     const [searchValue, setSearchValue] = useState(String(tagId));
+    
+    useEffect(() => {
+        setSearchValue(tagId != null ? String(tagId) : "");
+    }, [tagId]);
+      
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button variant="outline">
                     {searchValue
-                        ? tags.find((tag) => searchValue === String(tag.id))?.name
+                        ? tags.find((tag) => String(tag.id) === (searchValue || "") )?.name
                         : "None"}
                     <ChevronsUpDown className="opacity-50" />
                 </Button>
@@ -53,11 +58,11 @@ export default function TagInput({
                             {tags.map((tag) => (
                                 <TagItem
                                     onSelect={(val) => {
+                                        setTag(tag.id)
                                         setSearchValue(
                                             val === searchValue ? "" : val
                                         );
                                         setOpen(false);
-                                        setTag(tag.id)
                                     }}
                                     tag={tag}
                                     checked={searchValue === String(tag.id)}
