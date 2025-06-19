@@ -3,7 +3,7 @@ import { CardContent } from "../ui/card";
 import { Input } from "../ui/input";
 import Notes from "./notes";
 import { useEffect, useState } from "react";
-import AddNote from "./add-note";
+import AddNote from "./feature/add-note/add-note";
 import { useNote } from "@/context/NoteContext";
 import Loading from "./loading";
 import { useTags } from "@/context/TagsContext";

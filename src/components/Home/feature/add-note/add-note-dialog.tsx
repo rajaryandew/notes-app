@@ -5,9 +5,9 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
-import { MotionButton } from "../ui/motion";
+import { MotionButton } from "../../../ui/motion";
 import { ButtonVariant } from "@/lib/types";
-import { DialogHeader } from "../ui/dialog";
+import { DialogHeader } from "../../../ui/dialog";
 import AddNoteForm from "./add-note-form";
 
 /**

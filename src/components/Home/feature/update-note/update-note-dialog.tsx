@@ -1,5 +1,5 @@
 import { Note } from "@/lib/types";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
     Dialog,
     DialogClose,
@@ -8,10 +8,10 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "../ui/dialog";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
+} from "@/components/ui//dialog";
+import { Input } from "@/components/ui//input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Dispatch, SetStateAction, useState } from "react";
 import { editNote } from "@/lib/note-client";
 import UpdateNoteForm from "./update-note-form";

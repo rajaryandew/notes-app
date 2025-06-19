@@ -198,8 +198,8 @@ export async function getActiveNotesClient(
     setLoading: Dispatch<SetStateAction<boolean>>
 ) {
     getActiveNotes()
-        .then(() => {
-            refreshNotes(setNotesList)
+        .then(async () => {
+            await refreshNotes(setNotesList)
         })
         .catch((res) => {
             // Show error toast if fetch fails

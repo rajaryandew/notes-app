@@ -22,7 +22,7 @@ export default function TagInput({
     setTag,
     tagId
 }: {
-    setTag: Dispatch<SetStateAction<number | null | undefined>>;
+    setTag: Dispatch<SetStateAction<number | undefined>>;
     tagId?: number | null | undefined
 }) {
     const { tags } = useTags();

@@ -7,7 +7,7 @@ import {
     CardTitle,
 } from "../ui/card";
 import Delete from "./delete";
-import EditNote from "./update-note";
+import EditNote from "./feature/update-note/update-note";
 import { MotionCard } from "../ui/motion";
 import { useNote } from "@/context/NoteContext";
 import { tempDeleteNote } from "@/lib/note-client";

@@ -20,7 +20,7 @@ export default function UpdateNoteForm({
 }) {
     const [title, setTitle] = useState(note.title);
     const [description, setDescription] = useState(note.description);
-    const [tagId, setTagId] = useState<number | null | undefined>(note.tagId);
+    const [tagId, setTagId] = useState<number | undefined>(note.tagId!);
     const setNotes = useNote().setNotesList;
 
     const textAlign =
