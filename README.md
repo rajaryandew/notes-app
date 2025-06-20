@@ -26,7 +26,7 @@ The **Notes App** is a full-stack, modern note-taking application designed with 
 
 🔹 **Next.js 14 App Router** — Uses the latest layout and server capabilities  
 🔹 **Pin Notes** — Keep important notes at the top for quick access  
-🔹 **Tags for Notes** — Categorize and filter your notes effortlessly  
+🔹 **Tags for Notes** — Categorize your notes effortlessly  
 🔹 **Recycle Bin** — Soft-delete system with 30-day auto-clean via Vercel Cron  
 🔹 **Hybrid Auth (JWT + Redis)** — Secure sessions using token-cookie and Redis  
 🔹 **Responsive UI** — Works great on all screen sizes  
