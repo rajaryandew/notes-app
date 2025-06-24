@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { MiddlewareConfig, NextRequest } from "next/server";
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+const BASE_URL = process.env.BASE_URL || "http://localhost:3000";
 console.log(BASE_URL)
 export async function middleware(request: NextRequest) {
     const response = NextResponse.next();
