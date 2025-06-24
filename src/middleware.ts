@@ -1,29 +1,43 @@
 import { NextResponse } from "next/server";
 import { MiddlewareConfig, NextRequest } from "next/server";
-import jwt from "jsonwebtoken";
 
-export function middleware(request: NextRequest) {
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+export async function middleware(request: NextRequest) {
     const response = NextResponse.next();
-    const token = request.cookies.get("auth")?.value;
+    const authCookie = request.cookies.get("auth");
+    const token = authCookie?.value;
     let authenticated = false;
 
-    response.cookies.delete("username")
+    response.cookies.delete("username");
 
     if (token && typeof token === "string") {
         try {
-            jwt.decode(token);
-            authenticated = true;
-        } catch(err) {
-            const error = err as Error
-            console.log(error.message)
+            async function getUser() {
+                const res = await (
+                    await fetch(`${BASE_URL}/verify`, {
+                        headers: {
+                            auth: `${token}`,
+                        },
+                    })
+                ).json();
+                
+                if (res.verified === true) {
+                    authenticated = true;
+                }
+            }
+            await getUser();
+        } catch (err) {
+            const error = err as Error;
+            console.log(error.message);
         }
     }
     if (!authenticated) {
         const redirectResponse = NextResponse.redirect(
             new URL("/login", request.url)
         );
-        redirectResponse.cookies.delete("username")
-        return redirectResponse
+        redirectResponse.cookies.delete("username");
+        return redirectResponse;
     }
 
     return response;
