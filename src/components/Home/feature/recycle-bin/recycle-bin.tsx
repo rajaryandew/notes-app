@@ -1,6 +1,6 @@
 "use client";
 import { Trash } from "lucide-react";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button";
 import {
     Sheet,
     SheetContent,
@@ -8,15 +8,15 @@ import {
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from "../ui/sheet";
-import { Separator } from "../ui/separator";
+} from "@/components/ui/sheet";
+import { Separator } from "@/components/ui/separator";
 import { useDeletedNote } from "@/context/DeletedNoteContext";
 import { AnimatePresence, motion } from "motion/react";
-import DeletedNote from "./deleted-note";
+import DeletedNote from "./recycle-bin-note";
 import { useEffect } from "react";
 import { getDeletedNotes } from "@/lib/server-actions/note";
-import { RestoreAll } from "./restore-all-notes-dialog";
-import { DeleteAll } from "./delete-all-notes-dialog";
+import { RestoreAll } from "./recycle-bin-retore-all";
+import { DeleteAll } from "./recycle-bin-delete-all";
 
 /**
  * RecycleBin component

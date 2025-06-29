@@ -1,11 +1,11 @@
 "use client";
 import { CardContent } from "../ui/card";
 import { Input } from "../ui/input";
-import Notes from "./notes";
+import Notes from "./feature/notes/note-display/notes";
 import { useEffect, useState } from "react";
-import AddNote from "./feature/add-note/add-note";
+import AddNote from "./feature/notes/add-note/add-note";
 import { useNote } from "@/context/NoteContext";
-import Loading from "./loading";
+import Loading from "./feature/notes/note-display/note-loading";
 import { useTags } from "@/context/TagsContext";
 import { getActiveNotesClient } from "@/lib/note-client";
 import { getTagsClient } from "@/lib/tag-client";

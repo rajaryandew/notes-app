@@ -15,7 +15,7 @@ import {
 import { useTags } from "@/context/TagsContext";
 import { ChevronsUpDown } from "lucide-react";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import AddTag from "./add-tag";
+import AddTag from "./tag-add";
 import TagItem from "./tag";
 
 export default function TagInput({

@@ -1,8 +1,8 @@
 "use client";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { LogoutButton } from "./logout-button";
-import RecycleBin from "./recycle-bin";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { LogoutButton } from "./profile-logout";
+import RecycleBin from "../recycle-bin/recycle-bin";
 import { DeletedNoteProvider } from "@/context/DeletedNoteContext";
 
 /**

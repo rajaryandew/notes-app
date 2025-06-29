@@ -4,8 +4,8 @@ import {
     Dialog,
     DialogHeader,
     DialogTitle,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { deleteAll} from "@/lib/note-client";
 import { useDeletedNote } from "@/context/DeletedNoteContext";
 import { useNote } from "@/context/NoteContext";

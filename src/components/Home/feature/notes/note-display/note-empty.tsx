@@ -1,6 +1,6 @@
 import { FileText } from "lucide-react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
-import AddNote from "./feature/add-note/add-note";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import AddNote from "@/components/Home/feature/notes/add-note/add-note";
 
 /**
  * EmptyNotes component

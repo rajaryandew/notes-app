@@ -1,5 +1,5 @@
 import { Pin } from "lucide-react";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 /**
  * PinnedBadge component

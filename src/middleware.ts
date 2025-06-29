@@ -6,7 +6,7 @@ const BASE_URL = process.env.VERCEL_PROJECT_PRODUCTION_URL
     : process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : "http://localhost:3000";
-console.log(BASE_URL);
+
 export async function middleware(request: NextRequest) {
     const response = NextResponse.next();
     const authCookie = request.cookies.get("auth");

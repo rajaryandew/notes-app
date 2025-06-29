@@ -1,7 +1,7 @@
 import Note from "./note";
 import { AnimatePresence, motion } from "motion/react";
 import { useNote } from "@/context/NoteContext";
-import EmptyNotes from "./empty-notes";
+import EmptyNotes from "./note-empty";
 
 /**
  * Notes component

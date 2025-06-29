@@ -5,16 +5,16 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "../ui/card";
-import Delete from "./delete";
-import EditNote from "./feature/update-note/update-note";
-import { MotionCard } from "../ui/motion";
+} from "@/components/ui/card";
+import Delete from "./note-delete";
+import EditNote from "../update-note/update-note";
+import { MotionCard } from "@/components/ui/motion";
 import { useNote } from "@/context/NoteContext";
 import { tempDeleteNote } from "@/lib/note-client";
 import NoteActionDropdown from "./note-action-dropdown";
 import PinnedBadge from "./pinned-badge";
 import { useTags } from "@/context/TagsContext";
-import { Badge } from "../ui/badge";
+import { Badge } from "@/components/ui/badge";
 
 /**
  * Note component

@@ -6,31 +6,37 @@ import {
     DialogDescription,
     DialogClose,
     DialogTitle,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
+import { deleteNote } from "@/lib/note-client";
+import { Note } from "@/lib/types";
+import { useDeletedNote } from "@/context/DeletedNoteContext";
 
 /**
- * Delete component
+ * PermanentlyDelete component
  *
- * Renders a dialog to confirm deleting a note.
- * - Shows a confirmation dialog before deleting.
- * - Calls the provided onDelete callback when confirmed.
+ * Renders a dialog to confirm permanent deletion of a note.
+ * - Shows a warning that the action cannot be undone.
+ * - Calls deleteNote and updates deleted notes state on confirmation.
  *
- * @param onDelete - Callback function to execute when delete is confirmed.
+ * @param note - The note object to permanently delete.
  * @returns JSX.Element
  */
-export default function Delete({ onDelete }: { onDelete: () => void }) {
+export default function PermanentlyDelete({ note }: { note: Note }) {
+    // Get setDeletedNotes from context to update deleted notes list
+    const { setDeletedNotes } = useDeletedNote();
+
     return (
         <Dialog>
-            {/* Button to open the delete confirmation dialog */}
+            {/* Button to open the permanent delete confirmation dialog */}
             <DialogTrigger asChild>
-                <Button>Delete</Button>
+                <Button variant="destructive">Delete permanently</Button>
             </DialogTrigger>
             <DialogContent className="w-sm">
                 <DialogHeader>
                     <DialogTitle>Confirm deleting this note</DialogTitle>
                     <DialogDescription className="text-sm text-muted-foreground mt-2 leading-relaxed">
-                        This note will still be inside recycle bin.
+                        Be careful! This action cannot be undone.
                     </DialogDescription>
                 </DialogHeader>
                 {/* Action buttons: Delete and Cancel */}
@@ -40,7 +46,7 @@ export default function Delete({ onDelete }: { onDelete: () => void }) {
                             className="col-start-1"
                             autoFocus
                             variant="destructive"
-                            onClick={onDelete}
+                            onClick={() => deleteNote(note, setDeletedNotes)}
                         >
                             Delete
                         </Button>

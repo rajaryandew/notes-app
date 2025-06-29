@@ -1,10 +1,10 @@
 import { addNote } from "@/lib/note-client";
-import { DialogClose } from "../../../ui/dialog";
-import { Input } from "../../../ui/input";
-import { Label } from "../../../ui/label";
-import { MotionButton } from "../../../ui/motion";
-import { Textarea } from "../../../ui/textarea";
-import TagInput from "../../tag-input";
+import { DialogClose } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { MotionButton } from "@/components/ui/motion";
+import { Textarea } from "@/components/ui/textarea";
+import TagInput from "@/components/Home/feature/tag/tag-input";
 import { useState } from "react";
 import { useNote } from "@/context/NoteContext";
 

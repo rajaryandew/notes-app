@@ -4,14 +4,14 @@ import {
     Dialog,
     DialogHeader,
     DialogTitle,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { restoreAll} from "@/lib/note-client";
 import { useDeletedNote } from "@/context/DeletedNoteContext";
 import { useNote } from "@/context/NoteContext";
 import { DialogClose, DialogDescription } from "@radix-ui/react-dialog";
 
- /**
+/**
  * RestoreAll component
  * 
  * Renders a dialog for confirming restoration of all notes from the recycle bin.

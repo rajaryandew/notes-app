@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { CommandItem } from "../ui/command";
+import { CommandItem } from "@/components/ui/command";
 import {
     DialogTrigger,
     Dialog,
@@ -7,10 +7,10 @@ import {
     DialogHeader,
     DialogDescription,
     DialogTitle,
-} from "../ui/dialog";
+} from "@/components/ui/dialog";
 import { Plus } from "lucide-react";
-import { Input } from "../ui/input";
-import { Button } from "../ui/button";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { addTagClient } from "@/lib/tag-client";
 import { useTags } from "@/context/TagsContext";

@@ -5,10 +5,10 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
-} from "../ui/card";
-import { MotionCard } from "../ui/motion";
-import RestoreNote from "./restore-note";
-import PermanentlyDelete from "./permanently-delete-note";
+} from "@/components/ui/card";
+import { MotionCard } from "@/components/ui/motion";
+import RestoreNote from "./recycle-bin-restore-note";
+import PermanentlyDelete from "./recycle-bin-perma-delete-note";
 
 /**
  * DeletedNote component

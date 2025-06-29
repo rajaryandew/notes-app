@@ -1,13 +1,13 @@
 import { editNote } from "@/lib/note-client";
-import { Button } from "@/components/ui//button";
-import { DialogClose } from "@/components/ui//dialog";
-import { Input } from "@/components/ui//input";
-import { Label } from "@/components/ui//label";
-import { Textarea } from "@/components/ui//textarea";
+import { Button } from "@/components/ui/button";
+import { DialogClose } from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Note } from "@/lib/types";
 import { useState } from "react";
 import { useNote } from "@/context/NoteContext";
-import TagInput from "@/components/Home/tag-input";
+import TagInput from "@/components/Home/feature/tag/tag-input";
 
 export default function UpdateNoteForm({
     type,

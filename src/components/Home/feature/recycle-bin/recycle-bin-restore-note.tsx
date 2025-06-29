@@ -6,8 +6,8 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "../ui/dialog";
-import { Button } from "../ui/button";
+} from "@/components/ui/dialog";
+import { Button } from "@/components/ui/button";
 import { Note } from "@/lib/types";
 import { restoreNote } from "@/lib/note-client";
 import { useDeletedNote } from "@/context/DeletedNoteContext";

@@ -7,7 +7,7 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-} from "../ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import { EllipsisVertical, Pin, PinOff } from "lucide-react";
 import { toggleNotePin } from "@/lib/note-client";
 import { useNote } from "@/context/NoteContext";

@@ -7,7 +7,7 @@ const roboto = Roboto({
 
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 
-import ProfilePicture from "@/components/Home/profile-picture";
+import ProfilePicture from "@/components/Home/feature/profile/profile-picture";
 import Content from "@/components/Home/content";
 import { NoteProvider } from "@/context/NoteContext";
 import { TagProvider } from "@/context/TagsContext";

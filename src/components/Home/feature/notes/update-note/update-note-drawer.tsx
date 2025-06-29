@@ -1,5 +1,5 @@
 import { Note } from "@/lib/types";
-import { Button } from "@/components/ui//button";
+import { Button } from "@/components/ui/button";
 import {
     Drawer,
     DrawerContent,
@@ -7,7 +7,7 @@ import {
     DrawerHeader,
     DrawerTitle,
     DrawerTrigger,
-} from "@/components/ui//drawer";
+} from "@/components/ui/drawer";
 import UpdateNoteForm from "./update-note-form";
 
 /**
