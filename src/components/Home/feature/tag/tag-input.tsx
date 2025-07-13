@@ -20,26 +20,27 @@ import TagItem from "./tag";
 
 export default function TagInput({
     setTag,
-    tagId
+    tagId,
 }: {
     setTag: Dispatch<SetStateAction<number | undefined>>;
-    tagId?: number | null | undefined
+    tagId?: number | null | undefined;
 }) {
     const { tags } = useTags();
     const [open, setOpen] = useState(false);
     const [searchValue, setSearchValue] = useState(String(tagId));
-    
+
     useEffect(() => {
         setSearchValue(tagId != null ? String(tagId) : "");
     }, [tagId]);
-      
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
                 <Button variant="outline">
                     {searchValue
-                        ? tags.find((tag) => String(tag.id) === (searchValue || "") )?.name
+                        ? tags.find(
+                              (tag) => String(tag.id) === (searchValue || "")
+                          )?.name
                         : "None"}
                     <ChevronsUpDown className="opacity-50" />
                 </Button>
@@ -50,15 +51,15 @@ export default function TagInput({
                 align="start"
                 side="right"
             >
-                <Command>
+                <Command className="overflow-y-scroll">
                     <CommandInput placeholder="select tag" />
-                    <CommandList>
+                    <CommandList className="max-h-full">
                         <CommandEmpty>None...</CommandEmpty>
                         <CommandGroup>
                             {tags.map((tag) => (
                                 <TagItem
                                     onSelect={(val) => {
-                                        setTag(tag.id)
+                                        setTag(tag.id);
                                         setSearchValue(
                                             val === searchValue ? "" : val
                                         );
@@ -69,7 +70,7 @@ export default function TagInput({
                                     key={tag.id}
                                 />
                             ))}
-                            <AddTag/>
+                            <AddTag />
                         </CommandGroup>
                     </CommandList>
                 </Command>

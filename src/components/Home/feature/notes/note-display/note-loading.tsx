@@ -26,7 +26,7 @@ export default function Loading() {
                 </CardTitle>
             </CardHeader>
 
-            <CardContent>
+            <CardContent className="lg:h-[2vw]">
                 <CardDescription>
                     <Skeleton className="h-4 w-full mb-1" />
                 </CardDescription>
