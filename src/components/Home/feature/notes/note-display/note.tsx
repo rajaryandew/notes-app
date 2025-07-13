@@ -47,7 +47,7 @@ export default function Note({ note, index }: { note: Note; index: number }) {
                 <NoteActionDropdown note={note} />
             </CardHeader>
             {/* Note description */}
-            <CardContent>
+            <CardContent className="lg:h-[2vw]">
                 <CardDescription>{note.description || "--"}</CardDescription>
             </CardContent>
             {/* Actions: edit and delete */}
