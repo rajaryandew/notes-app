@@ -25,7 +25,13 @@ export function AddNoteDrawer({ variant }: { variant: ButtonVariant }) {
         <Drawer>
             {/* Button to open the drawer */}
             <DrawerTrigger asChild>
-                <MotionButton variant={variant}>New Note</MotionButton>
+                <MotionButton
+                    whileTap={{ scale: 0.8 }}
+                    className=" font-semibold flex-1/8 grow-0 lg:w-[9vw]"
+                    variant={variant}
+                >
+                    New Note
+                </MotionButton>
             </DrawerTrigger>
             {/* Drawer content for adding a note */}
             <DrawerContent className="px-4">
@@ -35,7 +41,7 @@ export function AddNoteDrawer({ variant }: { variant: ButtonVariant }) {
                 <DrawerDescription className="text-center">
                     Add a new note with title and description.
                 </DrawerDescription>
-                <AddNoteForm type="drawer"/>
+                <AddNoteForm type="drawer" />
             </DrawerContent>
         </Drawer>
     );

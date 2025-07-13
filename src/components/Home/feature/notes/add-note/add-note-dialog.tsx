@@ -4,7 +4,7 @@ import {
     DialogDescription,
     DialogTitle,
     DialogTrigger,
-    DialogHeader
+    DialogHeader,
 } from "@/components/ui/dialog";
 import { MotionButton } from "@/components/ui/motion";
 import { ButtonVariant } from "@/lib/types";
@@ -27,7 +27,7 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
             <DialogTrigger asChild>
                 <MotionButton
                     whileTap={{ scale: 0.8 }}
-                    className=" font-semibold flex-1/8 grow-0"
+                    className=" font-semibold flex-1/8 grow-0 lg:w-[9vw]"
                     variant={variant}
                 >
                     New Note
@@ -41,7 +41,7 @@ export function AddNoteDialog({ variant }: { variant: ButtonVariant }) {
                 <DialogDescription>
                     Add a new note with title and description.
                 </DialogDescription>
-                <AddNoteForm type="dialog"/>
+                <AddNoteForm type="dialog" />
             </DialogContent>
         </Dialog>
     );
