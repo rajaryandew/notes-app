@@ -1,6 +1,6 @@
 import { type Tag } from "@/lib/types";
 import { CommandItem } from "@/components/ui/command";
-import { CheckIcon, Trash } from "lucide-react";
+import { CheckIcon } from "lucide-react";
 import TagDelete from "./tag-delete";
 
 export default function TagItem({
