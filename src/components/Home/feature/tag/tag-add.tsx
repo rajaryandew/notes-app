@@ -40,7 +40,7 @@ export default function AddTag() {
                 <Input
                     value={value}
                     onChange={(e) => setValue(e.target.value)}
-                    placeholder="tag name"
+                    placeholder="Tag name"
                 />
                 <div className="grid grid-cols-3">
                     <DialogClose asChild>
