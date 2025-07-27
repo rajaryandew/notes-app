@@ -10,6 +10,6 @@ import { Badge } from "@/components/ui/badge";
  */
 export default function PinnedBadge(){
     return(
-        <Badge asChild className="absolute -left-1 -rotate-45 bottom-6 border-none" variant="outline"><Pin/></Badge>
+        <Badge asChild className="absolute left-1 -rotate-45 bottom-5 border-none" variant="outline"><Pin/></Badge>
     )
 }

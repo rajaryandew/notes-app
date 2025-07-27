@@ -36,7 +36,7 @@ export default function TagInput({
     return (
         <Popover open={open} onOpenChange={setOpen}>
             <PopoverTrigger asChild>
-                <Button variant="outline">
+                <Button variant="outline" className="overflow-hidden">
                     {searchValue
                         ? tags.find(
                               (tag) => String(tag.id) === (searchValue || "")
